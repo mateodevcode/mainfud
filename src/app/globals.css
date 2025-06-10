@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-roboto: var(--font-roboto-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Estilo global para scrollbars WebKit (Chrome, Edge, Safari) */
+* {
+  scrollbar-width: thin; 
+  scrollbar-color: #eec802 #000000; 
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px; 
+}
+
+*::-webkit-scrollbar-track {
+  background: #483d03;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #eec802;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #eec802;
+}
+
+
+/* Sombra a los productos */
+.shadow-png {
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+/* Estilos menu hamburguesa */
+
+.hamburger-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.line {
+  fill: #ffffff; /* Color de las barras */
+  transition: all 0.4s ease-in-out;
+}
+
+/* Animación de la línea superior */
+.line.top {
+  transform-origin: center;
+}
+.line.top.active {
+  /* transform: translateY(0px) rotate(40deg); */
+  transform: translateX(-4px) translateY(8px) rotate(43deg);
+  width: 20px;
+}
+
+/* Animación de la línea central */
+.line.center {
+  opacity: 1;
+}
+/* Animación de la línea inferior */
+.line.bottom {
+  transform-origin: center;
+}
+.line.bottom.active {
+  /* transform: translateY(-6px) rotate(-40deg); */
+  transform: translateX(-4px) translateY(-8px) rotate(-43deg);
+  width: 20px;
+}

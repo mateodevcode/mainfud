@@ -1,0 +1,92 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { Html5Qrcode } from "html5-qrcode";
+import { IoClose } from "react-icons/io5";
+
+export default function QRScannerModal({ isOpen, onClose, onResult }) {
+  const qrRegionId = "qr-reader";
+  const scannerRef = useRef(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (isOpen) {
+      const qrScanner = new Html5Qrcode(qrRegionId);
+      scannerRef.current = qrScanner;
+
+      qrScanner
+        .start(
+          { facingMode: "environment" },
+          { fps: 10, qrbox: { width: 250, height: 250 } },
+          async (decodedText) => {
+            if (!isMounted) return;
+
+            // console.log("QR detectado:", decodedText);
+
+            try {
+              await qrScanner.stop();
+              qrScanner.clear();
+              scannerRef.current = null;
+              limpiarDOM();
+            } catch (err) {
+              console.warn("Error al detener el escáner:", err);
+            }
+
+            onResult(decodedText);
+          },
+          () => {
+            // Errores de escaneo silenciosos
+          }
+        )
+        .catch((err) => {
+          console.error("Error al iniciar el escáner:", err);
+        });
+    }
+
+    return () => {
+      isMounted = false;
+
+      if (scannerRef.current) {
+        scannerRef.current
+          .stop()
+          .then(() => scannerRef.current.clear())
+          .then(() => {
+            scannerRef.current = null;
+            limpiarDOM();
+          })
+          .catch((err) => {
+            console.warn("Error al limpiar el escáner:", err);
+          });
+      } else {
+        limpiarDOM();
+      }
+    };
+  }, [isOpen]);
+
+  const limpiarDOM = () => {
+    const contenedor = document.getElementById(qrRegionId);
+    if (contenedor) {
+      contenedor.innerHTML = ""; // Limpia el DOM para evitar errores al volver a montar
+    }
+  };
+
+  if (!isOpen) return null;
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/50 bg-opacity-60 flex justify-center items-center"
+      onClick={onClose}
+    >
+      <div
+        className="bg-black rounded-xl p-4 w-full max-w-md relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button onClick={onClose} className="absolute top-4 right-4">
+          <IoClose className="w-6 h-6 cursor-pointer" />
+        </button>
+        <h2 className="text-lg font-semibold mb-2">Escanea tu código QR</h2>
+        <div id={qrRegionId} className="w-full h-auto" />
+      </div>
+    </div>
+  );
+}
