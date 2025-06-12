@@ -32,7 +32,10 @@ const Restaurante = () => {
 
   return (
     <div className="bg-white w-full flex flex-col items-center justify-center relative">
-      <div className="flex flex-row justify-between items-start pt-6 w-8/12 mt-20 gap-10 mb-40">
+      <div
+        className="flex flex-row justify-between items-start pt-6 w-8/12 mt-20 gap-10 mb-40"
+        id="el-restaurante"
+      >
         <Section1 />
         <Section2 setAbrirVideo={setAbrirVideo} />
       </div>

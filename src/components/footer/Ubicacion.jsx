@@ -5,15 +5,8 @@ import React from "react";
 
 const Ubicacion = () => {
   const html = `
-    <gmp-map 
-      center="10.632166862487793,-74.92012023925781" 
-      zoom="14" 
-      map-id="DEMO_MAP_ID"
-      style="width: 100%; height: 300px; border-radius: 10px; overflow: hidden;">
-      <gmp-advanced-marker 
-        position="10.632166862487793,-74.92012023925781" 
-        title="Ubicación Doña Ceci">
-      </gmp-advanced-marker>
+    <gmp-map center="10.627777099609375,-74.92241668701172" zoom="15" map-id="DEMO_MAP_ID">
+      <gmp-advanced-marker position="10.627777099609375,-74.92241668701172" title="Doña ceci"></gmp-advanced-marker>
     </gmp-map>
   `;
 

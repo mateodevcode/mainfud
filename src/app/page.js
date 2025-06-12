@@ -1,4 +1,5 @@
 import BannerPublicitario from "@/components/banner/BannerPublicitario";
+import BotonWhatsapp from "@/components/botonFlotante/BotonWhatsapp";
 import Footer from "@/components/footer/Footer";
 import Principal from "@/components/principal/Principal";
 import Restaurante from "@/components/restaurante/Restaurante";
@@ -8,10 +9,11 @@ export default function Home() {
   return (
     <div className=" flex flex-col items-center justify-center w-full">
       <Principal />
-      <Restaurante />
+      {/* <Restaurante />
       <BannerPublicitario />
       <TiposDeEmpanadas />
-      <Footer />
+      <Footer /> */}
+      <BotonWhatsapp />
     </div>
   );
 }

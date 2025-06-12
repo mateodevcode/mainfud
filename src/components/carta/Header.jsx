@@ -9,6 +9,7 @@ import { DonaCeciContext } from "@/context/DonaCeciContext";
 import Link from "next/link";
 import { AnimateNumber } from "./animateNumber/AnimateNumber";
 import PaginaQR from "../QRScanner/PaginaQR";
+import { useSession } from "next-auth/react";
 
 const Header = () => {
   const {
@@ -21,6 +22,7 @@ const Header = () => {
     setModalOpenIniciarSesion,
     modalOpenIniciarSesion,
   } = useContext(DonaCeciContext);
+  const { data: session, status } = useSession();
 
   return (
     <div className="w-full h-12 bg-black flex items-center justify-between relative z-20">
@@ -47,15 +49,26 @@ const Header = () => {
               <span>Ordenes</span>
             </Link>
           </li>
-          <li
-            className="cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75 select-none"
-            onClick={() => {
-              setModalOpenIniciarSesion(!modalOpenIniciarSesion);
-              setModalOpenListaArticulos(false);
-              setModalOpenIdioma(false);
-            }}
-          >
-            <span>Iniciar sesion</span>
+          {status === "unauthenticated" && (
+            <li
+              className="cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75 select-none"
+              onClick={() => {
+                setModalOpenIniciarSesion(!modalOpenIniciarSesion);
+                setModalOpenListaArticulos(false);
+                setModalOpenIdioma(false);
+              }}
+            >
+              <span>Iniciar sesion</span>
+            </li>
+          )}
+          <li>
+            <Image
+              src={session?.user?.image || "/logo/logo.png"}
+              alt={"Usuario"}
+              width={40}
+              height={40}
+              className="rounded-full w-7 h-7"
+            />
           </li>
           <li
             className="relative cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75 flex items-center gap-1 select-none"

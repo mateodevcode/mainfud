@@ -11,6 +11,9 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-roboto: var(--font-roboto-mono);
+  --font-delicada: var(--font-delius-swash-caps), cursive;
+  --font-divertida: var(--font-spicy-rice), serif;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -95,3 +98,10 @@ body {
   transform: translateX(-4px) translateY(-8px) rotate(-43deg);
   width: 20px;
 }
+
+/* Scroll suave */
+/* Lograr que los saltos sean suaves */
+html {
+  scroll-behavior: smooth;
+}
+

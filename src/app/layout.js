@@ -1,7 +1,10 @@
 import { Geist, Geist_Mono, Roboto_Mono } from "next/font/google";
+import { Delius_Swash_Caps, Spicy_Rice } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { DonaCeciProvider } from "@/context/DonaCeciContext";
+import { AuthProvider } from "./Providers";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +19,18 @@ const geistMono = Geist_Mono({
 const roboto_mono = Roboto_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
+});
+// Nuevas fuentes
+const deliusSwashCaps = Delius_Swash_Caps({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-delius-swash-caps",
+});
+
+const spicyRice = Spicy_Rice({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-spicy-rice",
 });
 
 export const metadata = {
@@ -35,9 +50,21 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${roboto_mono.variable} antialiased`}
+        className={`
+        ${geistSans.variable} 
+        ${geistMono.variable} 
+        ${roboto_mono.variable}
+        ${deliusSwashCaps.variable}
+        ${spicyRice.variable}
+      `}
       >
-        <DonaCeciProvider>{children}</DonaCeciProvider>
+        <AuthProvider>
+          <DonaCeciProvider>
+            {children}
+
+            <Toaster />
+          </DonaCeciProvider>
+        </AuthProvider>
       </body>
     </html>
   );

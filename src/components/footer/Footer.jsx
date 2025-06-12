@@ -33,13 +33,13 @@ const Footer = () => {
                 <h3 className="text-xl font-semibold mb-4">Horarios</h3>
                 <div className="space-y-2">
                   <div>
-                    <div className="font-medium">Lunes a viernes:</div>
+                    <div className="font-medium">Lunes a viernes</div>
                     <div className="text-sm text-gray-300">
                       04:30 PM - 11:00 PM
                     </div>
                   </div>
                   <div>
-                    <div className="font-medium">Sábado y domingo:</div>
+                    <div className="font-medium">Sábado y domingo</div>
                     <div className="text-sm text-gray-300">
                       04:00 PM - 23:30 PM
                     </div>
@@ -64,7 +64,10 @@ const Footer = () => {
                   </div>
                   <div className="flex items-center justify-center gap-2">
                     <BiMapPin className="w-4 h-4" />
-                    <span>Sabanalarga, Atlantico</span>
+                    <div className="flex flex-col items-center">
+                      <span>Calle 22 #12-35</span>
+                      <span>Sabanalarga, Colombia</span>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -29,6 +29,12 @@ export const DonaCeciProvider = ({ children }) => {
 
   const [ordenActual, setOrdenActual] = useState(null); // Orden completa actual del pedido
 
+  // Iniciar sesión y obtener usuarios
+  const [usuarios, setUsuarios] = useState([]);
+
+  // Modal de realizar pedido de inicio
+  const [modalOpenRealizarPedido, setModalOpenRealizarPedido] = useState(false);
+
   useEffect(() => {
     const cargarOrdenPendiente = async () => {
       const response = await fetch(`/api/ordenes/${idOrdenCreadaPendiente}`, {
@@ -269,6 +275,10 @@ export const DonaCeciProvider = ({ children }) => {
         IdOrdenesAlmacenadas,
         ordenActual,
         setOrdenActual,
+        usuarios,
+        setUsuarios,
+        modalOpenRealizarPedido,
+        setModalOpenRealizarPedido,
       }}
     >
       {children}
