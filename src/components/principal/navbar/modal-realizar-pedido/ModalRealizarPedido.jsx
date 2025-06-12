@@ -28,16 +28,16 @@ const ModalRealizarPedido = () => {
             onClick={() => setModalOpenRealizarPedido(false)}
           >
             <motion.div
-              className="relative z-10 w-4/12 flex flex-col items-start bg-black/50 shadow-lg p-4 rounded-md"
+              className="relative z-10 w-11/12 md:w-4/12 flex flex-col items-start bg-black/50 shadow-lg p-4 rounded-md"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
               exit={{ opacity: 0, scale: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-center w-full h-96 mb-4 gap-4">
+              <div className="flex items-center justify-center w-full md:h-96 mb-4 gap-4">
                 <div
-                  className="w-1/2 h-96 p-4 flex flex-col items-center justify-center bg-[#eec802] rounded-md border-[1px] border-black text-amber-900 -rotate-12 hover:scale-105 transition-transform duration-300 cursor-pointer active:scale-95 select-none"
+                  className="w-1/2 md:h-96 p-4 flex flex-col items-center justify-center bg-[#eec802] rounded-md border-[1px] border-black text-amber-900 -rotate-12 hover:scale-105 transition-transform duration-300 cursor-pointer active:scale-95 select-none"
                   onClick={() => setTipoPedido("para_llevar")}
                 >
                   <Image
@@ -47,7 +47,7 @@ const ModalRealizarPedido = () => {
                     height={600}
                     className="w-54 h-auto rounded-md"
                   />
-                  <span className="font-extrabold text-5xl text-center">
+                  <span className="font-extrabold text-3xl md:text-5xl text-center">
                     !Para llevar¡
                   </span>
                   <div
@@ -59,10 +59,10 @@ const ModalRealizarPedido = () => {
                   ></div>
                 </div>
                 <div
-                  className="w-1/2 h-96 p-4 flex flex-col items-center justify-center bg-amber-900 rounded-md border-[1px] border-black rotate-12 hover:scale-105 transition-transform duration-300 cursor-pointer active:scale-95 text-[#eec802] select-none"
+                  className="w-1/2 md:h-96 p-4 flex flex-col items-center justify-center bg-amber-900 rounded-md border-[1px] border-black rotate-12 hover:scale-105 transition-transform duration-300 cursor-pointer active:scale-95 text-[#eec802] select-none"
                   onClick={() => setTipoPedido("para_comer_aqui")}
                 >
-                  <span className="font-extrabold text-4xl text-center">
+                  <span className="font-extrabold text-2xl md:text-4xl text-center">
                     !Para comer aquí¡
                   </span>
                   <Image
@@ -82,17 +82,17 @@ const ModalRealizarPedido = () => {
                 </div>
               </div>
               {tipoPedido === "" && (
-                <p className="my-10 text-center font-semibold text-4xl text-white">
+                <p className="my-10 text-center font-semibold text-2xl md:text-4xl text-white">
                   Selecciona una opción
                 </p>
               )}
               {tipoPedido === "para_llevar" && (
-                <span className="my-10 text-center font-semibold text-4xl text-white">
+                <span className="my-10 text-center font-semibold text-3xl md:text-4xl text-white">
                   Para llevar
                 </span>
               )}
               {tipoPedido === "para_comer_aqui" && (
-                <span className="my-10 text-center font-semibold text-4xl text-white">
+                <span className="my-10 text-center font-semibold text-3xl md:text-4xl text-white">
                   {" "}
                   Para comer aquí
                 </span>

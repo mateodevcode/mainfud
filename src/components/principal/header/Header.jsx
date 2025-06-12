@@ -9,6 +9,16 @@ const Header = () => {
   const { isOpenMenuHamburguesa, setIsOpenMenuHamburguesa } =
     useContext(DonaCeciContext);
 
+  const email = "seventwotech@gmail.com";
+  const subject = "Información sobre Dona Ceci";
+  const body = "Hola, me gustaría obtener más información.";
+
+  const handleEmail = () => {
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <section className="w-full flex flex-col items-center justify-center">
       <div className="flex justify-between items-center pt-6 w-11/12 md:w-8/12 font-roboto">
@@ -63,7 +73,10 @@ const Header = () => {
           <Logo />
         </div>
 
-        <div className="hidden md:flex items-center gap-2 text-white w-72 justify-end">
+        <div
+          className="hidden md:flex items-center gap-2 text-white w-72 justify-end cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+          onClick={handleEmail}
+        >
           <div>
             <span className="text-sm">Email:</span>
             <div className="font-medium">info@donaceci.com</div>

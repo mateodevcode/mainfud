@@ -11,6 +11,20 @@ import AvisoFooter from "./AvisoFooter";
 import Ubicacion from "./Ubicacion";
 
 const Footer = () => {
+  const phoneNumber = "+573002888529";
+  const email = "seventwotech@gmail.com";
+  const subject = "Información sobre Dona Ceci";
+  const body = "Hola, me gustaría obtener más información.";
+
+  const handleCall = () => {
+    window.location.href = `tel:${phoneNumber}`;
+  };
+  const handleEmail = () => {
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <div className="w-full">
       <footer className="w-full relative flex items-center justify-center">
@@ -54,11 +68,17 @@ const Footer = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-4">Contacto</h3>
                 <div className="space-y-2">
-                  <div className="flex items-center justify-center gap-2">
+                  <div
+                    className="flex items-center justify-center gap-2 cursor-pointer"
+                    onClick={handleCall}
+                  >
                     <BiPhone className="w-4 h-4" />
                     <span>+ 57 322 524 87 03</span>
                   </div>
-                  <div className="flex items-center justify-center gap-2">
+                  <div
+                    className="flex items-center justify-center gap-2 cursor-pointer"
+                    onClick={handleEmail}
+                  >
                     <TbMail className="w-4 h-4" />
                     <span>info@donaceci.com</span>
                   </div>

@@ -4,10 +4,16 @@ import { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { DonaCeciContext } from "@/context/DonaCeciContext";
+import { BiSolidPhoneCall } from "react-icons/bi";
+import { TbMailFilled } from "react-icons/tb";
 
 const MenuHamburguesa = () => {
   const { isOpenMenuHamburguesa, setIsOpenMenuHamburguesa } =
     useContext(DonaCeciContext);
+  const phoneNumber = "+573002888529";
+  const email = "seventwotech@gmail.com";
+  const subject = "Información sobre Dona Ceci";
+  const body = "Hola, me gustaría obtener más información.";
 
   const enlaces = [
     {
@@ -24,6 +30,16 @@ const MenuHamburguesa = () => {
     },
   ];
 
+  const handleCall = () => {
+    window.location.href = `tel:${phoneNumber}`;
+  };
+
+  const handleEmail = () => {
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <AnimatePresence>
       {isOpenMenuHamburguesa && (
@@ -32,22 +48,48 @@ const MenuHamburguesa = () => {
           onClick={() => setIsOpenMenuHamburguesa(false)}
         >
           <motion.div
-            className="relative z-10 w-96 flex flex-col items-start bg-black shadow-lg rounded-md p-4 font-roboto text-white"
+            className="relative z-10 w-96 h-96 flex flex-col items-start justify-between bg-black shadow-lg rounded-md p-4 font-roboto text-white"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
             exit={{ opacity: 0, scale: 0 }}
           >
-            {enlaces.map((enlace, index) => (
-              <Link
-                key={index}
-                href={enlace.link}
-                className="w-full text-left px-4 py-2 hover:text-[#eec802] transition-colors active:scale-95 duration-75"
-                onClick={() => setIsOpenMenuHamburguesa(false)}
-              >
-                {enlace.nombre}
-              </Link>
-            ))}
+            <div
+              className="flex items-center gap-2 text-white justify-start"
+              onClick={handleCall}
+            >
+              <div className="w-8 h-8 bg-[#eec802] rounded-full flex items-center justify-center mr-2">
+                <BiSolidPhoneCall className="w-4 h-4 text-amber-800" />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm">Teléfono:</span>
+                <div className="font-medium">322 524 87 03</div>
+              </div>
+            </div>
+            <div className="flex flex-col items-start gap-2 w-full">
+              {enlaces.map((enlace, index) => (
+                <Link
+                  key={index}
+                  href={enlace.link}
+                  className="w-full text-left px-4 py-2 hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+                  onClick={() => setIsOpenMenuHamburguesa(false)}
+                >
+                  {enlace.nombre}
+                </Link>
+              ))}
+            </div>
+            <div
+              className="flex items-center gap-2 text-white justify-start"
+              onClick={handleEmail}
+            >
+              <div className="w-8 h-8 bg-[#eec802] rounded-full flex items-center justify-center mr-2">
+                <TbMailFilled className="w-4 h-4 text-amber-800" />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm">Email:</span>
+                <div className="font-medium">info@donaceci.com</div>
+              </div>
+            </div>
           </motion.div>
         </div>
       )}
