@@ -5,7 +5,7 @@ import { formatoDinero } from "@/lib/formatoDinero";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useContext, useState } from "react";
-import { MdDeliveryDining } from "react-icons/md";
+import { HiArrowSmRight } from "react-icons/hi";
 
 const ModalRealizarPedido = () => {
   const { modalOpenRealizarPedido, setModalOpenRealizarPedido } =
@@ -24,11 +24,11 @@ const ModalRealizarPedido = () => {
       <AnimatePresence>
         {modalOpenRealizarPedido && (
           <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10"
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-20"
             onClick={() => setModalOpenRealizarPedido(false)}
           >
             <motion.div
-              className="relative z-10 w-4/12 flex flex-col items-start bg-black/80 shadow-lg p-4 rounded-md"
+              className="relative z-10 w-4/12 flex flex-col items-start bg-black/50 shadow-lg p-4 rounded-md"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
@@ -98,7 +98,7 @@ const ModalRealizarPedido = () => {
                 </span>
               )}
               <button
-                className={`w-full bg-[#eec802] text-black px-4 py-2 rounded-md font-semibold   select-none ${
+                className={`w-full bg-[#eec802] text-black px-4 py-2 rounded-md font-semibold select-none flex items-center justify-center gap-2 ${
                   tipoPedido === ""
                     ? "opacity-50 cursor-not-allowed"
                     : "opacity-100 cursor-pointer hover:bg-[#eec802]/50 transition-colors duration-200  active:scale-95"
@@ -107,7 +107,7 @@ const ModalRealizarPedido = () => {
                   e.stopPropagation();
                 }}
               >
-                Siguiente
+                Siguiente <HiArrowSmRight className="text-2xl" />
               </button>
             </motion.div>
           </div>

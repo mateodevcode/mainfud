@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import ModalRealizarPedido from "./modal-realizar-pedido/ModalRealizarPedido";
+import Contacto from "./modal-realizar-pedido/Contacto";
 
 const Navbar = () => {
   return (
@@ -45,16 +46,8 @@ const Navbar = () => {
           >
             Carta
           </a>
-          <a
-            href="#"
-            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
-          >
-            Contacto
-          </a>
+          <Contacto />
         </div>
-        {/* <button className="bg-[#eec802] hover:bg-[#eec802]/50 text-amber-900 font-medium px-4 py-2 text-sm cursor-pointer select-none active:scale-95 transition-colors duration-300 animate-pulse">
-          Realizar Pedido
-        </button> */}
         <ModalRealizarPedido />
       </nav>
     </div>

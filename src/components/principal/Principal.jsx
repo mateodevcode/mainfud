@@ -1,327 +1,3 @@
-// "use client";
-// import React, { useEffect, useRef, useState } from "react";
-// import Image from "next/image";
-// import { gsap } from "gsap";
-// import Header from "./header/Header";
-// import Navbar from "./navbar/Navbar";
-// import DescubreLaCarta from "./descubre-carta/DescubreLaCarta";
-// import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-
-// gsap.registerPlugin(MotionPathPlugin);
-
-// const radius = 550;
-// const centerX = 600;
-// const centerY = 350;
-
-// const Principal = () => {
-//   const [currentIndex, setCurrentIndex] = useState(0);
-//   const empanadas = useRef([]);
-//   const intervalRef = useRef(null);
-//   const timeoutRef = useRef(null);
-
-//   const numItems = 3;
-//   const angleOffset = (2 * Math.PI) / numItems;
-
-//   const getPosition = (index) => {
-//     const angle = index * angleOffset - Math.PI / 2;
-//     return {
-//       x: centerX + radius * Math.cos(angle),
-//       y: centerY + radius * Math.sin(angle),
-//     };
-//   };
-
-//   const animateEmpanadas = (indexOffset = 1) => {
-//     const nextIndex = (currentIndex + indexOffset + numItems) % numItems;
-//     setCurrentIndex(nextIndex);
-
-//     empanadas.current.forEach((emp, i) => {
-//       const targetIndex = (i + nextIndex) % numItems;
-//       const pos = getPosition(targetIndex);
-//       const scale = targetIndex === 0 ? 1.3 : targetIndex === 1 ? 1 : 0.7;
-//       const z = targetIndex === 0 ? 3 : targetIndex === 1 ? 2 : 1;
-
-//       gsap.to(emp, {
-//         duration: 3,
-//         x: pos.x,
-//         y: pos.y,
-//         scale: scale,
-//         zIndex: z,
-//         ease: "back.inOut(1.7)",
-//       });
-//     });
-//   };
-
-//   const startAutoRotation = () => {
-//     intervalRef.current = setInterval(() => {
-//       animateEmpanadas(1);
-//     }, 4000);
-//   };
-
-//   const resetAutoRotation = () => {
-//     clearInterval(intervalRef.current);
-//     clearTimeout(timeoutRef.current);
-//     timeoutRef.current = setTimeout(() => {
-//       startAutoRotation();
-//     }, 4000); // Reanuda el auto-giro después de 4 segundos de inactividad
-//   };
-
-//   useEffect(() => {
-//     empanadas.current.forEach((emp, i) => {
-//       const pos = getPosition(i);
-//       gsap.set(emp, {
-//         x: pos.x,
-//         y: pos.y,
-//         scale: i === 0 ? 1.3 : i === 1 ? 1 : 0.7,
-//         zIndex: i === 0 ? 3 : i === 1 ? 2 : 1,
-//       });
-//     });
-
-//     startAutoRotation();
-
-//     return () => {
-//       clearInterval(intervalRef.current);
-//       clearTimeout(timeoutRef.current);
-//     };
-//   }, []);
-
-//   const handleManualNavigation = (direction) => {
-//     animateEmpanadas(direction);
-//     resetAutoRotation(); // Pausa y reanuda el auto-giro
-//   };
-
-//   return (
-//     <div className="w-full relative h-screen">
-//       <div className="absolute inset-0 -z-10">
-//         <Image
-//           src={"/principal/fondo-i.png"}
-//           alt={"Fondo"}
-//           width={1920}
-//           height={1080}
-//           className="w-full h-screen object-cover"
-//           priority
-//         />
-//       </div>
-//       <div className="absolute inset-0 bg-black/50 -z-10 w-full h-screen"></div>
-
-//       <Header />
-//       <div className="h-[1px] bg-zinc-300/50 my-5" />
-//       <Navbar />
-//       <DescubreLaCarta />
-
-//       <div className="absolute left-0 transform -translate-x-1/2 -translate-y-250  pointer-events-none grid place-items-center">
-//         <div className="relative overflow-hidden w-400 h-svh">
-//           {["empanada1", "empanada2", "empanada3"].map((cls, i) => (
-//             <img
-//               key={i}
-//               ref={(el) => (empanadas.current[i] = el)}
-//               src="/productos/empanada.png"
-//               className={`absolute w-64 h-64 ${cls} caret-lime-300`}
-//               style={{ top: 0, left: 0 }}
-//             />
-//           ))}
-//         </div>
-//       </div>
-
-//       <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 flex gap-4 z-50 pointer-events-auto">
-//         <button
-//           onClick={() => handleManualNavigation(-1)}
-//           className="px-4 py-2 bg-white text-black rounded-lg shadow hover:bg-zinc-200 transition"
-//         >
-//           ⬅️ Anterior
-//         </button>
-//         <button
-//           onClick={() => handleManualNavigation(1)}
-//           className="px-4 py-2 bg-white text-black rounded-lg shadow hover:bg-zinc-200 transition"
-//         >
-//           Siguiente ➡️
-//         </button>
-//       </div>
-
-//       <div className="absolute bottom-0 flex items-center justify-center w-full">
-//         <Image
-//           src={"/divisor/divisor.png"}
-//           alt={"divisor"}
-//           width={1920}
-//           height={1080}
-//           className="w-full h-auto object-cover"
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Principal;
-
-// "use client";
-// import React, { useEffect, useRef, useState } from "react";
-// import Image from "next/image";
-// import { gsap } from "gsap";
-// import Header from "./header/Header";
-// import Navbar from "./navbar/Navbar";
-// import DescubreLaCarta from "./descubre-carta/DescubreLaCarta";
-// import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-
-// gsap.registerPlugin(MotionPathPlugin);
-
-// const radius = 550;
-// const centerX = 600;
-// const centerY = 350;
-
-// const Principal = () => {
-//   const backgrounds = [
-//     "/fondos/fondo-i.png",
-//     "/fondos/fondo-inicio-1.png",
-//     "/fondos/fondo3.png",
-//   ];
-//   const [backgroundIndex, setBackgroundIndex] = useState(0);
-//   const [currentIndex, setCurrentIndex] = useState(0);
-//   const currentIndexRef = useRef(0); // 👉 Ref para mantener el índice actualizado
-//   const empanadas = useRef([]);
-//   const intervalRef = useRef(null);
-//   const timeoutRef = useRef(null);
-
-//   const numItems = 3;
-//   const angleOffset = (2 * Math.PI) / numItems;
-
-//   const getPosition = (index) => {
-//     const angle = index * angleOffset - Math.PI / 2;
-//     return {
-//       x: centerX + radius * Math.cos(angle),
-//       y: centerY + radius * Math.sin(angle),
-//     };
-//   };
-
-//   const animateEmpanadas = (indexOffset = 1) => {
-//     const nextIndex =
-//       (currentIndexRef.current + indexOffset + numItems) % numItems;
-//     setCurrentIndex(nextIndex);
-//     currentIndexRef.current = nextIndex; // 🔄 Sincroniza el índice en la ref
-
-//     empanadas.current.forEach((emp, i) => {
-//       const targetIndex = (i + nextIndex) % numItems;
-//       const pos = getPosition(targetIndex);
-//       const scale = targetIndex === 0 ? 1.3 : targetIndex === 1 ? 1 : 0.7;
-//       const z = targetIndex === 0 ? 3 : targetIndex === 1 ? 2 : 1;
-
-//       gsap.to(emp, {
-//         duration: 3,
-//         x: pos.x,
-//         y: pos.y,
-//         scale: scale,
-//         zIndex: z,
-//         ease: "back.inOut(1.7)",
-//       });
-//     });
-//   };
-
-//   const startAutoRotation = () => {
-//     intervalRef.current = setInterval(() => {
-//       animateEmpanadas(1); // 🌀 Rotación infinita
-//     }, 4000);
-//   };
-
-//   const resetAutoRotation = () => {
-//     clearInterval(intervalRef.current);
-//     clearTimeout(timeoutRef.current);
-//     timeoutRef.current = setTimeout(() => {
-//       startAutoRotation();
-//     }, 4000); // ⏱️ Reanuda después de 4 segundos de inactividad
-//   };
-
-//   useEffect(() => {
-//     empanadas.current.forEach((emp, i) => {
-//       const pos = getPosition(i);
-//       gsap.set(emp, {
-//         x: pos.x,
-//         y: pos.y,
-//         scale: i === 0 ? 1.3 : i === 1 ? 1 : 0.7,
-//         zIndex: i === 0 ? 3 : i === 1 ? 2 : 1,
-//       });
-//     });
-
-//     startAutoRotation();
-
-//     return () => {
-//       clearInterval(intervalRef.current);
-//       clearTimeout(timeoutRef.current);
-//     };
-//   }, []);
-
-//   const handleManualNavigation = (direction) => {
-//     animateEmpanadas(direction);
-//     resetAutoRotation(); // 🚫⏱️ Pausa y reanuda la rotación
-//   };
-
-//   // En animateEmpanadas:
-//   const nextIndex =
-//     (currentIndexRef.current + indexOffset + numItems) % numItems;
-//   setCurrentIndex(nextIndex);
-//   setBackgroundIndex(nextIndex);
-//   currentIndexRef.current = nextIndex;
-
-//   return (
-//     <div className="w-full relative h-screen">
-//       <div className="absolute inset-0 -z-10">
-//         <Image
-//           src={backgrounds[backgroundIndex]}
-//           alt={`Fondo ${backgroundIndex + 1}`}
-//           width={1920}
-//           height={1080}
-//           className="w-full h-screen object-cover transition-opacity duration-1000 ease-in-out"
-//           priority
-//         />
-//       </div>
-//       <div className="absolute inset-0 bg-black/50 -z-10 w-full h-screen"></div>
-
-//       <Header />
-//       <div className="h-[1px] bg-zinc-300/50 my-5" />
-//       <Navbar />
-//       <DescubreLaCarta />
-
-//       <div className="absolute left-0 transform -translate-x-1/2 -translate-y-250  pointer-events-none grid place-items-center">
-//         <div className="relative overflow-hidden w-400 h-svh">
-//           {["empanada1", "empanada2", "empanada3"].map((cls, i) => (
-//             <img
-//               key={i}
-//               ref={(el) => (empanadas.current[i] = el)}
-//               src="/productos/empanada.png"
-//               className={`absolute w-64 h-64 ${cls} caret-lime-300`}
-//               style={{ top: 0, left: 0 }}
-//             />
-//           ))}
-//         </div>
-//       </div>
-
-//       <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 flex gap-4 z-50 pointer-events-auto">
-//         <button
-//           onClick={() => handleManualNavigation(-1)}
-//           className="px-4 py-2 bg-white text-black rounded-lg shadow hover:bg-zinc-200 transition"
-//         >
-//           ⬅️ Anterior
-//         </button>
-//         <button
-//           onClick={() => handleManualNavigation(1)}
-//           className="px-4 py-2 bg-white text-black rounded-lg shadow hover:bg-zinc-200 transition"
-//         >
-//           Siguiente ➡️
-//         </button>
-//       </div>
-
-//       <div className="absolute bottom-0 flex items-center justify-center w-full">
-//         <Image
-//           src={"/divisor/divisor.png"}
-//           alt={"divisor"}
-//           width={1920}
-//           height={1080}
-//           className="w-full h-auto object-cover"
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Principal;
-
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -353,6 +29,12 @@ const Principal = () => {
   const intervalRef = useRef(null);
   const timeoutRef = useRef(null);
   const currentIndexRef = useRef(0); // controla el índice actual para auto-rotación
+
+  const empanadasList = [
+    "/productos/empanada.png",
+    "/productos/empanada-2.png",
+    "/productos/empanada-3.png",
+  ];
 
   const numItems = 3;
   const angleOffset = (2 * Math.PI) / numItems;
@@ -474,12 +156,12 @@ const Principal = () => {
       {/* Empanadas */}
       <div className="absolute left-0 transform -translate-x-1/2 -translate-y-250 pointer-events-none grid place-items-center">
         <div className="relative overflow-hidden w-400 h-svh">
-          {["empanada1", "empanada2", "empanada3"].map((cls, i) => (
+          {empanadasList.map((cls, i) => (
             <img
               key={i}
               ref={(el) => (empanadas.current[i] = el)}
-              src="/productos/empanada.png"
-              className={`absolute w-64 h-64 ${cls}`}
+              src={cls}
+              className={`absolute w-64  ${cls}`}
               style={{ top: 0, left: 0 }}
             />
           ))}
@@ -487,7 +169,7 @@ const Principal = () => {
       </div>
 
       {/* Botones */}
-      <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 flex gap-4 z-50 pointer-events-auto">
+      <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 flex gap-4 z-10 pointer-events-auto">
         <button
           onClick={() => handleManualNavigation(-1)}
           className="p-2 bg-[#eec802] text-amber-900 rounded-lg shadow transition cursor-pointer active:scale-95 opacity-30 hover:opacity-100"
