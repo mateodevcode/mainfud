@@ -9,8 +9,8 @@ const DescubreLaCarta = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full mb-20">
       <div className="w-11/12 md:w-8/12 flex flex-col items-center justify-center my-20">
-        <span className="text-xl md:text-2xl text-center text-white my-4 w-8/12 md:w-full">
-          Restaurante de empanadas artesanales🥟
+        <span className="text-xl md:text-2xl text-center text-white my-4 w-10/12 md:w-8/12">
+          Restaurante de empanadas artesanales 🥟
         </span>
         <h2 className="text-8xl md:text-9xl text-center mb-5 font-divertida text-white">
           Doña Ceci

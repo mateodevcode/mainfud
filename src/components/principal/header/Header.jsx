@@ -1,10 +1,14 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { TbMailFilled } from "react-icons/tb";
 import Logo from "../logo/Logo";
-import MenuHamburguesa from "./MenuHamburguesa";
+import { DonaCeciContext } from "@/context/DonaCeciContext";
 
 const Header = () => {
+  const { isOpenMenuHamburguesa, setIsOpenMenuHamburguesa } =
+    useContext(DonaCeciContext);
+
   return (
     <section className="w-full flex flex-col items-center justify-center">
       <div className="flex justify-between items-center pt-6 w-11/12 md:w-8/12 font-roboto">
@@ -19,7 +23,43 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-2 text-white justify-between md:justify-center md:w-60 w-full">
-          <MenuHamburguesa />
+          {/* <MenuHamburguesa /> */}
+          <button
+            className="hamburger-button flex md:hidden"
+            onClick={() => setIsOpenMenuHamburguesa(!isOpenMenuHamburguesa)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              width="40"
+              height="24"
+              viewBox="0 0 40 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className=""
+            >
+              {/* Línea superior */}
+              <rect
+                className={`line top ${isOpenMenuHamburguesa ? "active" : ""}`}
+                x="4"
+                y="6"
+                width="30"
+                height="2"
+                rx="1"
+              />
+
+              {/* Línea inferior */}
+              <rect
+                className={`line bottom ${
+                  isOpenMenuHamburguesa ? "active" : ""
+                }`}
+                x="4"
+                y="16"
+                width="30"
+                height="2"
+                rx="1"
+              />
+            </svg>
+          </button>
           <Logo />
         </div>
 

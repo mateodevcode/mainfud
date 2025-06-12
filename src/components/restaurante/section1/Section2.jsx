@@ -10,7 +10,7 @@ const Section2 = ({ setAbrirVideo }) => {
   ];
 
   return (
-    <div className="w-5/12 h-[900px] flex flex-col">
+    <div className="w-full md:w-5/12 h-[800px] md:h-[900px] flex flex-col">
       <span className="text-4xl font-roboto">
         Más de 20 tipos de empanadas{" "}
         <span className="text-[#965511]">artesanales.</span>
@@ -40,7 +40,13 @@ const Section2 = ({ setAbrirVideo }) => {
       <button className="bg-[#eec802] hover:bg-[#eec802]/50 text-amber-900 font-medium px-4 py-2 my-4 cursor-pointer select-none w-32 active:scale-95 transition-colors duration-300">
         Saber Más
       </button>
-      <div className="relative">
+      <div
+        className="relative"
+        onClick={(e) => {
+          e.stopPropagation();
+          setAbrirVideo(true);
+        }}
+      >
         <Image
           src="/section/perfil-video-section2.png"
           alt="Empanadas"

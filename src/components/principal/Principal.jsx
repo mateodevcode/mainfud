@@ -10,6 +10,7 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
+import MenuHamburguesa from "./header/MenuHamburguesa";
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -154,7 +155,7 @@ const Principal = () => {
       <DescubreLaCarta />
 
       {/* Empanadas */}
-      <div className="absolute left-0 transform -translate-x-1/2 -translate-y-250 pointer-events-none grid place-items-center">
+      <div className="hidden absolute left-0 transform -translate-x-1/2 -translate-y-250 pointer-events-none md:grid place-items-center">
         <div className="relative overflow-hidden w-400 h-svh">
           {empanadasList.map((cls, i) => (
             <img
@@ -169,7 +170,7 @@ const Principal = () => {
       </div>
 
       {/* Botones */}
-      <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 flex gap-4 z-10 pointer-events-auto">
+      <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 hidden md:flex gap-4 z-10 pointer-events-auto">
         <button
           onClick={() => handleManualNavigation(-1)}
           className="p-2 bg-[#eec802] text-amber-900 rounded-lg shadow transition cursor-pointer active:scale-95 opacity-30 hover:opacity-100"
@@ -194,6 +195,7 @@ const Principal = () => {
           className="w-full h-auto object-cover"
         />
       </div>
+      <MenuHamburguesa />
     </div>
   );
 };

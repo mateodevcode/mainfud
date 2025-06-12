@@ -1,11 +1,15 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const TiposDeEmpanadas = () => {
+  const router = useRouter();
   return (
     <div className="w-full flex flex-col items-center justify-center bg-white relative">
-      <div className="flex flex-col justify-center items-center pt-20 w-8/12 pb-20">
-        <h2 className="text-6xl font-bold text-center text-[#965511]">
+      <div className="flex flex-col justify-center items-center py-5 md:py-20 w-10/12 md:w-8/12">
+        <h2 className="text-4xl md:text-6xl font-bold text-center text-[#965511]">
           Tipos de Empanadas
         </h2>
 
@@ -23,12 +27,15 @@ const TiposDeEmpanadas = () => {
             className="w-[700px] mt-10"
           />
         </div>
-        <button className="bg-[#eec802] hover:bg-[#eec802]/50 text-amber-900 font-medium px-4 py-2 my-4 cursor-pointer select-none w-28 active:scale-95 transition-colors duration-300 mt-10">
+        <button
+          className="bg-[#eec802] hover:bg-[#eec802]/50 text-amber-900 font-medium px-4 py-2 my-4 cursor-pointer select-none w-28 active:scale-95 transition-colors duration-300 mt-10"
+          onClick={() => router.push("/carta")}
+        >
           Ver Carta
         </button>
       </div>
 
-      <div className="absolute -bottom-12 flex items-center justify-center w-full z-20 rotate-180">
+      <div className="absolute -bottom-3 md:-bottom-12 flex items-center justify-center w-full z-20 rotate-180">
         <Image
           src={"/divisor/divisor.png"}
           alt={"divisor"}

@@ -35,6 +35,9 @@ export const DonaCeciProvider = ({ children }) => {
   // Modal de realizar pedido de inicio
   const [modalOpenRealizarPedido, setModalOpenRealizarPedido] = useState(false);
 
+  // Modal menu hamburguesa
+  const [isOpenMenuHamburguesa, setIsOpenMenuHamburguesa] = useState(false);
+
   useEffect(() => {
     const cargarOrdenPendiente = async () => {
       const response = await fetch(`/api/ordenes/${idOrdenCreadaPendiente}`, {
@@ -279,6 +282,8 @@ export const DonaCeciProvider = ({ children }) => {
         setUsuarios,
         modalOpenRealizarPedido,
         setModalOpenRealizarPedido,
+        isOpenMenuHamburguesa,
+        setIsOpenMenuHamburguesa,
       }}
     >
       {children}

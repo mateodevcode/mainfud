@@ -9,10 +9,10 @@ export default function Home() {
   return (
     <div className=" flex flex-col items-center justify-center w-full">
       <Principal />
-      {/* <Restaurante />
+      <Restaurante />
       <BannerPublicitario />
       <TiposDeEmpanadas />
-      <Footer /> */}
+      <Footer />
       <BotonWhatsapp />
     </div>
   );

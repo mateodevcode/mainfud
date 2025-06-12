@@ -96,7 +96,7 @@ ${productosTexto}
   return (
     <>
       <div
-        className="fixed z-20 right-2 md:right-10 bottom-5 rounded-full cursor-pointer hover:text-white/80 text-white dark:text-white shadow-lg dark:shadow-white/10 shadow-black/10 hover:opacity-70 transition-all duration-300 hover:scale-105"
+        className="fixed z-50 right-2 md:right-10 bottom-5 rounded-full cursor-pointer hover:text-white/80 text-white dark:text-white shadow-lg dark:shadow-white/10 shadow-black/10 hover:opacity-70 transition-all duration-300 hover:scale-105"
         onClick={() => {
           setModalOpenBotonFlotante(!modalOpenBotonFlotante);
         }}

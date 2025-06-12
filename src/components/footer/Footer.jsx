@@ -24,7 +24,7 @@ const Footer = () => {
 
           {/* Footer Content */}
           <div className="container mx-auto px-6 z-10 mt-20 font-roboto">
-            <div className="flex flex-row items-start justify-around text-white">
+            <div className="flex flex-col md:flex-row items-center md:items-start justify-around text-white gap-8 md:gap-0">
               {/* Horarios */}
               <div className="text-center w-80">
                 <div className="w-12 h-12 bg-[#eec802] rounded-full flex items-center justify-center mx-auto mb-4">

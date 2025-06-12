@@ -1,45 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useContext } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
+import { DonaCeciContext } from "@/context/DonaCeciContext";
 
 const MenuHamburguesa = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpenMenuHamburguesa, setIsOpenMenuHamburguesa } =
+    useContext(DonaCeciContext);
+
+  const enlaces = [
+    {
+      nombre: "Inicio",
+      link: "/",
+    },
+    {
+      nombre: "Carta",
+      link: "/carta",
+    },
+    {
+      nombre: "Contacto",
+      link: "/contacto",
+    },
+  ];
 
   return (
-    <button
-      className="hamburger-button flex md:hidden"
-      onClick={() => setIsOpen(!isOpen)}
-      aria-label="Toggle menu"
-    >
-      <svg
-        width="40"
-        height="24"
-        viewBox="0 0 40 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className=""
-      >
-        {/* Línea superior */}
-        <rect
-          className={`line top ${isOpen ? "active" : ""}`}
-          x="4"
-          y="6"
-          width="30"
-          height="2"
-          rx="1"
-        />
-
-        {/* Línea inferior */}
-        <rect
-          className={`line bottom ${isOpen ? "active" : ""}`}
-          x="4"
-          y="16"
-          width="30"
-          height="2"
-          rx="1"
-        />
-      </svg>
-    </button>
+    <AnimatePresence>
+      {isOpenMenuHamburguesa && (
+        <div
+          className="absolute inset-0 bg-black/50 flex items-center justify-center z-20 h-screen w-screen"
+          onClick={() => setIsOpenMenuHamburguesa(false)}
+        >
+          <motion.div
+            className="relative z-10 w-96 flex flex-col items-start bg-black shadow-lg rounded-md p-4 font-roboto text-white"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, scale: 0 }}
+          >
+            {enlaces.map((enlace, index) => (
+              <Link
+                key={index}
+                href={enlace.link}
+                className="w-full text-left px-4 py-2 hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+                onClick={() => setIsOpenMenuHamburguesa(false)}
+              >
+                {enlace.nombre}
+              </Link>
+            ))}
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 };
 
