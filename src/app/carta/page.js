@@ -1,8 +1,10 @@
 import Carta from "@/components/carta/Carta";
-import React from "react";
+import { Suspense } from "react";
 
-const page = () => {
-  return <Carta />;
-};
-
-export default page;
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Cargando...</p>}>
+      <Carta />
+    </Suspense>
+  );
+}

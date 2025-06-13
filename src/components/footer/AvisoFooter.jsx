@@ -18,10 +18,10 @@ const AvisoFooter = () => {
           >
             Política de Cookies
           </Link>
-          <span className="text-gray-500">|</span>
+          <span className="text-gray-500 hidden md:flex">|</span>
           <Link
             href="/politicas-de-privacidad"
-            className="hover:text-[#eec802] transition-colors"
+            className="hover:text-[#eec802] transition-colors hidden md:flex"
           >
             Aviso Legal
           </Link>

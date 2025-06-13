@@ -8,7 +8,8 @@ import { DonaCeciContext } from "@/context/DonaCeciContext";
 import Link from "next/link";
 import { AnimateNumber } from "./animateNumber/AnimateNumber";
 import PaginaQR from "../QRScanner/PaginaQR";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { MdLogout } from "react-icons/md";
 
 const Header = () => {
   const {
@@ -63,15 +64,20 @@ const Header = () => {
               <span>Iniciar sesion</span>
             </li>
           )}
-          <li>
-            <Image
-              src={session?.user?.image || "/logo/logo.png"}
-              alt={"Usuario"}
-              width={40}
-              height={40}
-              className="rounded-full w-7 h-7"
-            />
-          </li>
+          {status === "authenticated" && (
+            <li className="flex items-center gap-2 active:scale-95 duration-75 cursor-pointer hover:text-[#eec802] transition-colors select-none">
+              <Image
+                src={session?.user?.image || "/logo/logo.png"}
+                alt={"Usuario"}
+                width={40}
+                height={40}
+                className="rounded-full w-7 h-7"
+              />
+              <div onClick={() => signOut()}>
+                <MdLogout className="text-xl" />
+              </div>
+            </li>
+          )}
           <li
             className="relative cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75 flex items-center gap-1 select-none"
             onClick={() => {

@@ -61,7 +61,7 @@ const Carta = () => {
       <ModalIniciarSesion />
 
       {/* Cargar loading */}
-      {true && (
+      {status === "loading" && (
         <div className="absolute inset-0 z-50">
           <Loading />
         </div>
