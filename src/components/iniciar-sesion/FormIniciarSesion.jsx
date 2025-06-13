@@ -79,16 +79,16 @@ export function FormIniciarSesion({ className, ...props }) {
       {...props}
     >
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold">Inicia sesión</h1>
+        <h1 className="text-2xl font-bold my-5">Inicia sesión</h1>
         <p className="text-balance text-sm text-zinc-400">
           Ingresa tu email para acceder a tu cuenta
         </p>
       </div>
       <div className="grid gap-6">
-        <div className="grid gap-2">
+        <div className="grid gap-2 mt-2">
           <label htmlFor="email">Correo electrónico</label>
-          <div className="relative flex items-center gap-4">
-            <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+          <div className="relative flex items-center justify-start gap-4 border-[1px] border-zinc-300 p-2">
+            <Mail className="h-4 w-4 ml-2 text-muted-foreground" />
             <input
               id="email"
               type="email"
@@ -96,7 +96,7 @@ export function FormIniciarSesion({ className, ...props }) {
               value={formData.email}
               onChange={handleChange}
               required
-              className="pl-10 pr-10 bg-transparent focus"
+              className="bg-transparent focus text-sm focus:outline-none focus:ring-0 focus:border-zinc-300"
             />
           </div>
         </div>
@@ -110,8 +110,8 @@ export function FormIniciarSesion({ className, ...props }) {
               ¿Olvidaste tu contraseña?
             </a>
           </div>
-          <div className="relative flex items-center gap-4">
-            <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+          <div className="relative flex items-center justify-start gap-4 border-[1px] border-zinc-300 p-2">
+            <Lock className="h-4 w-4 ml-2 text-muted-foreground" />
             <input
               id="password"
               type={verContraseña ? "text" : "password"}
@@ -120,7 +120,7 @@ export function FormIniciarSesion({ className, ...props }) {
               value={formData.password}
               onChange={handleChange}
               required
-              className="pl-10"
+              className="focus:outline-none focus:ring-0 focus:border-zinc-300"
             />
             <div className="absolute right-3 top-2.5 h-4 w-4">
               {verContraseña ? (
@@ -139,18 +139,18 @@ export function FormIniciarSesion({ className, ...props }) {
         </div>
         <button
           type="submit"
-          className="w-full bg-purple-600 text-white hover:bg-purple-700 cursor-pointer select-none"
+          className="w-full cursor-pointer select-none flex items-center justify-center gap-2 bg-[#eec802] p-2 my-2 rounded-full text-black hover:bg-[#eec802]/50 transition-colors duration-200 active:scale-95 border-[1px]"
         >
           Iniciar sesión
         </button>
         <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
-          <span className="relative z-10 bg-[#0c0a1d] px-2 text-zinc-400">
+          <span className="relative z-10 bg-white px-2 text-zinc-400">
             O continúa con
           </span>
         </div>
         <button
           variant="outline"
-          className="w-full bg-[#0c0a1d] cursor-pointer select-none"
+          className="w-full cursor-pointer select-none flex items-center justify-center gap-2 bg-zinc-200 p-2 my-2 rounded-full text-black hover:bg-zinc-300 transition-colors duration-200 active:scale-95 border-[1px] border-zinc-300"
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -163,11 +163,11 @@ export function FormIniciarSesion({ className, ...props }) {
           Iniciar sesión con Google
         </button>
       </div>
-      <div className="text-center text-sm">
+      <div className="text-center text-sm my-5">
         ¿No tienes una cuenta?{" "}
         <Link
           href="/registrarse"
-          className="font-semibold hover:text-[#00A49C] hover:underline"
+          className="font-semibold hover:text-[#eec802] hover:underline"
         >
           Regístrate
         </Link>

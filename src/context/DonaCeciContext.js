@@ -1,9 +1,11 @@
 "use client";
 
-import { createContext, use, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { carta, empanadas, bebidas, postres } from "@/data/carta";
 import { useRouter } from "next/navigation";
 import { getId } from "@qrvey/id-generator";
+import confetti from "canvas-confetti";
+import { useSession } from "next-auth/react";
 
 export const DonaCeciContext = createContext();
 
@@ -11,7 +13,7 @@ export const DonaCeciProvider = ({ children }) => {
   const router = useRouter();
   const customAlphabet = "0123456789ABCDEF";
   const customLength = 8;
-
+  const { data: session, status } = useSession();
   const [itemSeleccionado, setItemSeleccionado] = useState("Empanadas");
   const [pedido, setPedido] = useState([]);
   const [idioma, setIdioma] = useState("Español");
@@ -37,6 +39,18 @@ export const DonaCeciProvider = ({ children }) => {
 
   // Modal menu hamburguesa
   const [isOpenMenuHamburguesa, setIsOpenMenuHamburguesa] = useState(false);
+
+  // cargar la mesa desde localStorage
+  const [mesa, setMesa] = useState(null);
+
+  // Configuración de confetti
+  const handleConfetti = () => {
+    confetti({
+      particleCount: 200,
+      spread: 100,
+      origin: { y: 0.6 }, // Ajusta la posición inicial
+    });
+  };
 
   useEffect(() => {
     const cargarOrdenPendiente = async () => {
@@ -128,9 +142,9 @@ export const DonaCeciProvider = ({ children }) => {
     if (!orden) {
       setOrden({
         pedido: getId(customAlphabet, customLength),
-        nombre: "",
+        nombre: session?.user?.name || "",
         direccion: "",
-        mesa: "",
+        mesa: mesa,
         total: 0,
         estado: "pendiente",
         listaPedidos: [],
@@ -284,6 +298,9 @@ export const DonaCeciProvider = ({ children }) => {
         setModalOpenRealizarPedido,
         isOpenMenuHamburguesa,
         setIsOpenMenuHamburguesa,
+        handleConfetti,
+        mesa,
+        setMesa,
       }}
     >
       {children}

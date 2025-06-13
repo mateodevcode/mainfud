@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { IoClose } from "react-icons/io5";
 
 export default function QRScannerModal({ isOpen, onClose, onResult }) {
   const qrRegionId = "qr-reader";
   const scannerRef = useRef(null);
+  const [mensaje, setMensaje] = useState("Iniciando escáner...");
 
   useEffect(() => {
     let isMounted = true;
@@ -14,17 +15,19 @@ export default function QRScannerModal({ isOpen, onClose, onResult }) {
     if (isOpen) {
       const qrScanner = new Html5Qrcode(qrRegionId);
       scannerRef.current = qrScanner;
+      setMensaje("Buscando código QR...");
 
       qrScanner
         .start(
           { facingMode: "environment" },
           { fps: 10, qrbox: { width: 250, height: 250 } },
           async (decodedText) => {
-            if (!isMounted) return;
+            if (!decodedText || !isMounted) return;
 
-            // console.log("QR detectado:", decodedText);
+            setMensaje("Código encontrado...");
 
             try {
+              // console.log("QR escaneado:", decodedText);
               await qrScanner.stop();
               qrScanner.clear();
               scannerRef.current = null;
@@ -41,6 +44,7 @@ export default function QRScannerModal({ isOpen, onClose, onResult }) {
         )
         .catch((err) => {
           console.error("Error al iniciar el escáner:", err);
+          setMensaje("No se pudo iniciar la cámara.");
         });
     }
 
@@ -67,11 +71,12 @@ export default function QRScannerModal({ isOpen, onClose, onResult }) {
   const limpiarDOM = () => {
     const contenedor = document.getElementById(qrRegionId);
     if (contenedor) {
-      contenedor.innerHTML = ""; // Limpia el DOM para evitar errores al volver a montar
+      contenedor.innerHTML = "";
     }
   };
 
   if (!isOpen) return null;
+
   return (
     <div
       className="fixed inset-0 z-50 bg-black/50 bg-opacity-60 flex justify-center items-center"
@@ -86,6 +91,7 @@ export default function QRScannerModal({ isOpen, onClose, onResult }) {
         </button>
         <h2 className="text-lg font-semibold mb-2">Escanea tu código QR</h2>
         <div id={qrRegionId} className="w-full h-auto" />
+        <p className="text-white text-center mt-2">{mensaje}</p>
       </div>
     </div>
   );

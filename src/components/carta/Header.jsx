@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useContext } from "react";
-import { LuQrCode } from "react-icons/lu";
 import { IoCart } from "react-icons/io5";
 import { TiArrowSortedDown } from "react-icons/ti";
 import Image from "next/image";
@@ -21,8 +20,11 @@ const Header = () => {
     totalUnidades,
     setModalOpenIniciarSesion,
     modalOpenIniciarSesion,
+    mesa,
   } = useContext(DonaCeciContext);
   const { data: session, status } = useSession();
+
+  console.log(mesa);
 
   return (
     <div className="w-full h-12 bg-black flex items-center justify-between relative z-20">

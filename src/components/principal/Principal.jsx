@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import Header from "./header/Header";
@@ -11,6 +11,8 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import MenuHamburguesa from "./header/MenuHamburguesa";
+import { DonaCeciContext } from "@/context/DonaCeciContext";
+import ModalIniciarSesion from "../carta/ModalIniciarSesion";
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -25,6 +27,8 @@ const backgrounds = [
 ];
 
 const Principal = () => {
+  const { setModalOpenIniciarSesion } = useContext(DonaCeciContext);
+
   const [backgroundIndex, setBackgroundIndex] = useState(0);
   const empanadas = useRef([]);
   const intervalRef = useRef(null);
@@ -120,11 +124,12 @@ const Principal = () => {
   };
 
   return (
-    <div className="w-full relative h-screen">
-      {/* Fondo dinámico */}
-      {/* Transición de fondos con desvanecimiento */}
-      <div className="absolute inset-0 -z-10 w-full h-screen">
-        {/* {backgrounds.map((src, i) => (
+    <>
+      <div className="w-full relative h-screen">
+        {/* Fondo dinámico */}
+        {/* Transición de fondos con desvanecimiento */}
+        <div className="absolute inset-0 -z-10 w-full h-screen">
+          {/* {backgrounds.map((src, i) => (
           <Image
             key={i}
             src={src}
@@ -137,66 +142,69 @@ const Principal = () => {
             priority={i === backgroundIndex}
           />
         ))} */}
-        <Image
-          src={"/principal/fondo-1.png"}
-          alt={`Fondo`}
-          width={1920}
-          height={1080}
-          className="w-full h-screen object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100 z-0"
-          priority
-        />
-      </div>
-
-      <div className="absolute inset-0 bg-black/50 -z-10 w-full h-screen"></div>
-
-      <Header />
-      <div className="h-[1px] bg-zinc-300/50 my-5" />
-      <Navbar />
-      <DescubreLaCarta />
-
-      {/* Empanadas */}
-      <div className="hidden absolute left-0 transform -translate-x-1/2 -translate-y-250 pointer-events-none md:grid place-items-center">
-        <div className="relative overflow-hidden w-400 h-svh">
-          {empanadasList.map((cls, i) => (
-            <img
-              key={i}
-              ref={(el) => (empanadas.current[i] = el)}
-              src={cls}
-              className={`absolute w-64  ${cls}`}
-              style={{ top: 0, left: 0 }}
-            />
-          ))}
+          <Image
+            src={"/principal/fondo-1.png"}
+            alt={`Fondo`}
+            width={1920}
+            height={1080}
+            className="w-full h-screen object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100 z-0"
+            priority
+          />
         </div>
+
+        <div className="absolute inset-0 bg-black/50 -z-10 w-full h-screen"></div>
+
+        <Header />
+        <div className="h-[1px] bg-zinc-300/50 my-5" />
+        <Navbar />
+        <DescubreLaCarta />
+
+        {/* Empanadas */}
+        <div className="hidden absolute left-0 transform -translate-x-1/2 -translate-y-250 pointer-events-none md:grid place-items-center">
+          <div className="relative overflow-hidden w-400 h-svh">
+            {empanadasList.map((cls, i) => (
+              <img
+                key={i}
+                ref={(el) => (empanadas.current[i] = el)}
+                src={cls}
+                className={`absolute w-64  ${cls}`}
+                style={{ top: 0, left: 0 }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Botones */}
+        <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 hidden md:flex gap-4 z-10 pointer-events-auto">
+          <button
+            onClick={() => handleManualNavigation(-1)}
+            className="p-2 bg-[#eec802] text-amber-900 rounded-lg shadow transition cursor-pointer active:scale-95 opacity-30 hover:opacity-100"
+          >
+            <MdOutlineKeyboardArrowLeft className="text-2xl" />
+          </button>
+          <button
+            onClick={() => handleManualNavigation(1)}
+            className="p-2 bg-[#eec802] text-amber-900 rounded-lg shadow transition cursor-pointer active:scale-95 opacity-30 hover:opacity-100"
+          >
+            <MdOutlineKeyboardArrowRight className="text-2xl" />
+          </button>
+        </div>
+
+        {/* Divisor inferior */}
+        <div className="absolute bottom-0 flex items-center justify-center w-full">
+          <Image
+            src={"/divisor/divisor.png"}
+            alt={"divisor"}
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+        <MenuHamburguesa />
       </div>
 
-      {/* Botones */}
-      <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 hidden md:flex gap-4 z-10 pointer-events-auto">
-        <button
-          onClick={() => handleManualNavigation(-1)}
-          className="p-2 bg-[#eec802] text-amber-900 rounded-lg shadow transition cursor-pointer active:scale-95 opacity-30 hover:opacity-100"
-        >
-          <MdOutlineKeyboardArrowLeft className="text-2xl" />
-        </button>
-        <button
-          onClick={() => handleManualNavigation(1)}
-          className="p-2 bg-[#eec802] text-amber-900 rounded-lg shadow transition cursor-pointer active:scale-95 opacity-30 hover:opacity-100"
-        >
-          <MdOutlineKeyboardArrowRight className="text-2xl" />
-        </button>
-      </div>
-
-      {/* Divisor inferior */}
-      <div className="absolute bottom-0 flex items-center justify-center w-full">
-        <Image
-          src={"/divisor/divisor.png"}
-          alt={"divisor"}
-          width={1920}
-          height={1080}
-          className="w-full h-auto object-cover"
-        />
-      </div>
-      <MenuHamburguesa />
-    </div>
+      <ModalIniciarSesion />
+    </>
   );
 };
 

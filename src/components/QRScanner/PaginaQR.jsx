@@ -1,26 +1,44 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import QRScannerModal from "./QRScannerModal";
 import { LuQrCode } from "react-icons/lu";
+import { useRouter } from "next/navigation";
+import { DonaCeciContext } from "@/context/DonaCeciContext";
 
-export default function PaginaQR() {
+export default function PaginaQR({ size = "w-6 h-6" }) {
+  const router = useRouter();
+  const { setModalOpenRealizarPedido, mesa, setMesa } =
+    useContext(DonaCeciContext);
   const [modalAbierto, setModalAbierto] = useState(false);
   const [resultadoQR, setResultadoQR] = useState(null);
 
   const manejarResultadoQR = (valor) => {
     setResultadoQR(valor);
-    setModalAbierto(false); // Cierra el modal al escanear
+    setModalAbierto(false);
   };
 
   useEffect(() => {
     if (!resultadoQR) return;
 
-    const url = new URL(resultadoQR); // Reemplaza con la URL real
-    const params = new URLSearchParams(url.search);
-    const mesaNumero = params.get("mesa"); // Esto da '14'
-    console.log("Número de mesa:", mesaNumero);
-  }, []);
+    try {
+      const url = new URL(resultadoQR);
+      const params = new URLSearchParams(url.search);
+      const mesaNumero = params.get("mesa");
+
+      if (mesaNumero) {
+        setMesa(mesaNumero);
+      } else {
+        console.warn("El QR no contiene el parámetro 'mesa'");
+        setMesa(null);
+      }
+    } catch (error) {
+      console.error("URL inválida:", error);
+      setMesa(null);
+    }
+  }, [resultadoQR]);
+
+  console.log(mesa);
 
   return (
     <div className="flex items-center justify-center">
@@ -28,28 +46,31 @@ export default function PaginaQR() {
         className="cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75 select-none"
         onClick={() => setModalAbierto(true)}
       >
-        <LuQrCode className="w-6 h-6" />
+        <LuQrCode className={size} />
       </button>
 
       {resultadoQR && (
         <div
           className="fixed inset-0 z-50 bg-black/50 bg-opacity-60 flex justify-center items-center"
           onClick={() => {
-            setModalAbierto(false); // Cierra el modal
+            setModalAbierto(false);
             setResultadoQR(null);
-          }} // Cierra el modal al hacer clic fuera
+          }}
         >
           <div className="mt-4 p-3 px-6 bg-white text-black rounded gap-4 flex flex-col items-center">
             <div className="text-5xl m-4">
-              <strong className="">Mesa:</strong>{" "}
-              <span className="font-semibold">{14}</span>
+              <strong>Mesa:</strong>{" "}
+              <span className="font-semibold">{mesa || "Cargando..."}</span>
             </div>
             <button
               className="font-semibold bg-blue-600 text-white h-16 px-7 flex items-center justify-center cursor-pointer active:scale-95 hover:bg-blue-700 transition-colors duration-200 m-4"
               onClick={() => {
-                setModalAbierto(false); // Cierra el modal
-                console.log("Agregar a la orden:", mesa);
-                setResultadoQR(null); // Limpia el resultado después de agregar
+                if (!mesa) return;
+                setModalAbierto(false);
+                router.push(`/carta?mesa=${mesa}`);
+                setResultadoQR(null);
+                setModalAbierto(false);
+                setModalOpenRealizarPedido(false); // Abre el modal de realizar pedido
               }}
             >
               Agregar a la orden

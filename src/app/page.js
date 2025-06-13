@@ -7,7 +7,7 @@ import TiposDeEmpanadas from "@/components/tipos-empanadas/TiposDeEmpanadas";
 
 export default function Home() {
   return (
-    <div className=" flex flex-col items-center justify-center w-full">
+    <div className=" flex flex-col items-center justify-center w-full text-black">
       <Principal />
       <Restaurante />
       <BannerPublicitario />

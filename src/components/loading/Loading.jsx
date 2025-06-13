@@ -10,7 +10,7 @@ const Loading = () => {
 
       <div className="flex items-center justify-center mt-4 font-semibold absolute text-sm bottom-2 left-0 right-0 text-center">
         <span>Desarrollado por</span>{" "}
-        <span className="font-semibold"> Seventwo</span>
+        <strong className="font-semibold"> Seventwo</strong>
       </div>
     </div>
   );
