@@ -7,7 +7,7 @@ const Section1 = () => {
   return (
     <div className="w-full md:w-7/12 h-[550px] md:h-[900px] flex flex-col">
       <span className="text-[#965511] font-semibold">Deliciosas Empanadas</span>
-      <h2 className={`font-extrabold text-6xl mb-4`}>Doña Ceci</h2>
+      <h2 className={`font-extrabold text-6xl mb-4 text-black`}>Doña Ceci</h2>
       <Image
         src="/section/section2.png"
         alt="Empanadas"
