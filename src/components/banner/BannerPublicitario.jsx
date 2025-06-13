@@ -10,7 +10,7 @@ const BannerPublicitario = () => {
     <div className="w-full relative mt-9 md:mt-0 mb-20 md:mb-0">
       <div className="w-full">
         <Image
-          src={"/banner/bannerEmpanada.png"}
+          src={"/banner/BannerEmpanada.png"}
           alt={"Banner Publicitario"}
           width={1920}
           height={1080}
