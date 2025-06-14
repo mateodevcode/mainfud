@@ -128,7 +128,7 @@ const Principal = () => {
 
   return (
     <>
-      <div className="w-full relative h-full">
+      <div className="w-full relative h-screen">
         {/* Fondo dinámico */}
         {/* Transición de fondos con desvanecimiento */}
         <div className="absolute inset-0 -z-10 w-full">
@@ -156,7 +156,7 @@ const Principal = () => {
         </div>
 
         <div className="absolute inset-0 bg-black/50 -z-10 w-full h-screen"></div>
-        <div className="w-full md:flex lg:hidden hidden items-center justify-center mt-10">
+        <div className="w-full md:flex lg:hidden hidden items-center justify-center pt-10">
           <Logo />
         </div>
         <Header />

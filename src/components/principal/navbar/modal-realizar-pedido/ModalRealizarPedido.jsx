@@ -64,7 +64,7 @@ const ModalRealizarPedido = () => {
           onClick={() => setModalOpenRealizarPedido(false)}
         >
           <motion.div
-            className="relative z-10 w-11/12 md:w-8/12 lg:w-6/12 xl:w-5/12 flex flex-col items-start bg-black/50 shadow-lg p-4 rounded-md"
+            className="relative z-10 w-11/12 md:w-[600px] flex flex-col items-start bg-black/50 shadow-lg p-4 rounded-md"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}

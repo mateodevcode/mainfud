@@ -25,6 +25,7 @@ const TiposDeEmpanadas = () => {
             width={1000}
             height={1000}
             className="w-[700px] mt-10"
+            style={{ filter: "drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3))" }}
           />
         </div>
         <button
