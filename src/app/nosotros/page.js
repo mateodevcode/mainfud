@@ -1,16 +1,11 @@
-"use client";
-
 import Footer from "@/components/footer/Footer";
 import GaleriaImg from "@/components/galeria/GaleriaImg";
 import Principal from "@/components/principal/Principal";
-import React, { useState } from "react";
 
 const page = () => {
-  
-
   return (
     <div>
-      <Principal />
+      <Principal fondo={"/principal/fondo-2.png"} />
       <GaleriaImg />
       <Footer />
     </div>

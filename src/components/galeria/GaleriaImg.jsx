@@ -19,7 +19,21 @@ const GaleriaImg = () => {
   return (
     <>
       {/* Galería de imágenes */}
-      <div className="bg-white w-full flex items-start justify-center select-none">
+      <div className="bg-white w-full flex flex-col items-center justify-start select-none">
+        <div className="w-11/12 md:w-8/12 lg:w-6/12 p-4 mt-20">
+          <h2 className="text-7xl font-divertida">Restaurante Doña Ceci</h2>
+          <p className="text-lg text-black mt-4 font-roboto">
+            En el corazón del sabor colombiano, Doña Ceci ofrece las empanadas
+            más tradicionales y sabrosas que puedas imaginar. Hechas con amor,
+            recetas caseras y una sazón inconfundible, cada bocado es un viaje a
+            nuestras raíces. Ya sea para disfrutar en el restaurante o llevarlas
+            congeladas a casa, las empanadas de Doña Ceci son perfectas para
+            compartir, sorprender o simplemente consentirte.{" "}
+            <strong className="text-xl">
+              ¡Ven y déjate conquistar por el auténtico sabor de Colombia!
+            </strong>
+          </p>
+        </div>
         <div className="w-11/12 md:w-8/12 lg:w-6/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 my-20">
           {images.map((src, i) => (
             <Image

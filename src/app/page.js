@@ -1,5 +1,6 @@
 import BannerPublicitario from "@/components/banner/BannerPublicitario";
 import BotonWhatsapp from "@/components/botonFlotante/BotonWhatsapp";
+import FlayerPublicitario from "@/components/flayer-publicitario/FlayerPublicitario";
 import Footer from "@/components/footer/Footer";
 import Principal from "@/components/principal/Principal";
 import Restaurante from "@/components/restaurante/Restaurante";
@@ -14,6 +15,7 @@ export default function Home() {
       <TiposDeEmpanadas />
       <Footer />
       <BotonWhatsapp />
+      <FlayerPublicitario />
     </div>
   );
 }

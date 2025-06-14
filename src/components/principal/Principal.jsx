@@ -16,6 +16,7 @@ import ModalIniciarSesion from "../carta/ModalIniciarSesion";
 import Logo from "./logo/Logo";
 import Contacto from "./navbar/modal-realizar-pedido/Contacto";
 import ModalRealizarPedido from "./navbar/modal-realizar-pedido/ModalRealizarPedido";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -29,8 +30,9 @@ const backgrounds = [
   "/principal/fondo-1.png",
 ];
 
-const Principal = () => {
+const Principal = ({ fondo = "/principal/fondo-1.png" }) => {
   const { setOpenModalContacto } = useContext(DonaCeciContext);
+  const pathName = usePathname();
 
   const [backgroundIndex, setBackgroundIndex] = useState(0);
   const empanadas = useRef([]);
@@ -146,7 +148,7 @@ const Principal = () => {
           />
         ))} */}
           <Image
-            src={"/principal/fondo-1.png"}
+            src={fondo}
             alt={`Fondo`}
             width={1920}
             height={1080}
@@ -165,13 +167,17 @@ const Principal = () => {
         <div className="hidden md:flex lg:hidden items-center gap-8 text-white font-roboto w-full justify-center mt-16">
           <a
             href="/"
-            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+            className={`hover:text-[#eec802] transition-colors active:scale-95 duration-75 ${
+              pathName === "/" ? "text-[#eec802] font-semibold" : ""
+            }`}
           >
             Inicio
           </a>
           <a
-            href="#el-restaurante"
-            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+            href="/nosotros"
+            className={`hover:text-[#eec802] transition-colors active:scale-95 duration-75 ${
+              pathName === "/nosotros" ? "text-[#eec802] font-semibold" : ""
+            }`}
           >
             El Restaurante
           </a>

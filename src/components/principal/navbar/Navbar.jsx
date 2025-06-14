@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import { datosDonaCeci } from "@/data/donaceci";
 import { DonaCeciContext } from "@/context/DonaCeciContext";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const {
@@ -13,6 +14,7 @@ const Navbar = () => {
     setPaso2,
     setOpenModalContacto,
   } = useContext(DonaCeciContext);
+  const pathName = usePathname();
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
@@ -33,13 +35,17 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-8 text-white font-roboto">
           <a
             href="/"
-            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+            className={`hover:text-[#eec802] transition-colors active:scale-95 duration-75 ${
+              pathName === "/" ? "text-[#eec802] font-semibold" : ""
+            }`}
           >
             Inicio
           </a>
           <a
             href="/nosotros"
-            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+            className={`hover:text-[#eec802] transition-colors active:scale-95 duration-75 ${
+              pathName === "/nosotros" ? "text-[#eec802] font-semibold" : ""
+            }`}
           >
             El Restaurante
           </a>

@@ -3,7 +3,6 @@
 import React, { use, useEffect, useState } from "react";
 import Section1 from "./section1/Section1";
 import Section2 from "./section1/Section2";
-import Image from "next/image";
 
 const Restaurante = () => {
   const [abrirVideo, setAbrirVideo] = useState(false);
