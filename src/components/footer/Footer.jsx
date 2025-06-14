@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AvisoFooter from "./AvisoFooter";
 import Ubicacion from "./Ubicacion";
+import { datosDonaCeci } from "@/data/donaceci";
 
 const Footer = () => {
   const phoneNumber = "+573002888529";
@@ -73,19 +74,19 @@ const Footer = () => {
                     onClick={handleCall}
                   >
                     <BiPhone className="w-4 h-4" />
-                    <span>+ 57 322 524 87 03</span>
+                    <span>{datosDonaCeci.telefono}</span>
                   </div>
                   <div
                     className="flex items-center justify-center gap-2 cursor-pointer"
                     onClick={handleEmail}
                   >
                     <TbMail className="w-4 h-4" />
-                    <span>info@donaceci.com</span>
+                    <span>{datosDonaCeci.email}</span>
                   </div>
                   <div className="flex items-center justify-center gap-2">
                     <BiMapPin className="w-4 h-4" />
                     <div className="flex flex-col items-center">
-                      <span>Calle 22 #12-35</span>
+                      <span>{datosDonaCeci.direccion}</span>
                       <span>Sabanalarga, Colombia</span>
                     </div>
                   </div>

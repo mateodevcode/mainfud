@@ -1,9 +1,10 @@
 import Carta from "@/components/carta/Carta";
+import Loading from "@/components/loading/Loading";
 import { Suspense } from "react";
 
 export default function Page() {
   return (
-    <Suspense fallback={<p>Cargando...</p>}>
+    <Suspense fallback={<Loading />}>
       <Carta />
     </Suspense>
   );

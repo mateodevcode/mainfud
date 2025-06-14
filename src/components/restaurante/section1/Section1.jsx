@@ -1,3 +1,4 @@
+import { datosDonaCeci } from "@/data/donaceci";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -27,7 +28,9 @@ const Section1 = () => {
           </p>
           <div className="flex items-center justify-center gap-2 mt-2 text-2xl">
             <FaWhatsapp className="" />
-            <span className="font-semibold font-roboto">322 524 87 03</span>
+            <span className="font-semibold font-roboto">
+              {datosDonaCeci.telefono}
+            </span>
           </div>
         </Link>
       </div>

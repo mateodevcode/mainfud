@@ -9,6 +9,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { HiArrowSmRight } from "react-icons/hi";
 import { gsap } from "gsap";
 import ModalIniciarSesion from "@/components/carta/ModalIniciarSesion";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const ModalRealizarPedido = () => {
   const {
@@ -19,6 +21,9 @@ const ModalRealizarPedido = () => {
   } = useContext(DonaCeciContext);
   const eleccionRef = useRef(null);
   const [tipoPedido, setTipoPedido] = useState("");
+  const router = useRouter();
+  const { status } = useSession();
+  const [esperandoAutenticacion, setEsperandoAutenticacion] = useState(false);
 
   const [paso1, setPaso1] = useState(false);
   const [paso2, setPaso2] = useState(false);
@@ -32,6 +37,25 @@ const ModalRealizarPedido = () => {
       );
     }
   }, [paso2, tipoPedido]);
+
+  const verificarAutenticacionYRedirigir = () => {
+    if (status === "authenticated") {
+      router.push("/carta");
+      setModalOpenRealizarPedido(false);
+    } else {
+      setModalOpenIniciarSesion(true);
+      setModalOpenRealizarPedido(false);
+      setEsperandoAutenticacion(true); // activar modo de espera
+    }
+  };
+
+  useEffect(() => {
+    if (esperandoAutenticacion && status === "authenticated") {
+      router.push("/carta");
+      setModalOpenIniciarSesion(false);
+      setEsperandoAutenticacion(false); // ya no esperamos
+    }
+  }, [status, esperandoAutenticacion]);
 
   return (
     <>
@@ -130,10 +154,32 @@ const ModalRealizarPedido = () => {
                         ? "opacity-50 cursor-not-allowed"
                         : "opacity-100 cursor-pointer hover:bg-[#eec802]/50 transition-colors duration-200  active:scale-95"
                     }`}
+                    // onClick={(e) => {
+                    //   e.stopPropagation();
+                    //   setPaso1(false);
+                    //   setPaso2(true);
+                    //   if (tipoPedido === "para_comer_aqui") {
+                    //     handleConfetti();
+                    //     setTimeout(() => {
+                    //       handleConfetti();
+                    //     }, 1000);
+                    //   }
+
+                    //   if (tipoPedido === "para_llevar") {
+                    //     if (status === "authenticated") {
+                    //       router.push("/carta");
+                    //       setModalOpenRealizarPedido(false);
+                    //     } else {
+                    //       setModalOpenIniciarSesion(true);
+                    //       setModalOpenRealizarPedido(false);
+                    //     }
+                    //   }
+                    // }}
                     onClick={(e) => {
                       e.stopPropagation();
                       setPaso1(false);
                       setPaso2(true);
+
                       if (tipoPedido === "para_comer_aqui") {
                         handleConfetti();
                         setTimeout(() => {
@@ -142,8 +188,7 @@ const ModalRealizarPedido = () => {
                       }
 
                       if (tipoPedido === "para_llevar") {
-                        setModalOpenIniciarSesion(true);
-                        setModalOpenRealizarPedido(false);
+                        verificarAutenticacionYRedirigir();
                       }
                     }}
                   >

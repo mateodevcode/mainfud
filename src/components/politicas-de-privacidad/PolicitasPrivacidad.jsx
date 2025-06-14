@@ -1,4 +1,5 @@
 "use client";
+import { datosDonaCeci } from "@/data/donaceci";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -183,7 +184,8 @@ export default function PrivacyPolicy() {
               </ul>
               <p className="">
                 Para cualquiera de estos casos, puedes escribirnos directamente
-                por mensaje en Instagram o al correo donacecie@gmail.com.
+                por mensaje en Instagram o al correo{" "}
+                <strong>{datosDonaCeci.email}</strong>.
               </p>
               <p>
                 <strong>Doña Ceci</strong>

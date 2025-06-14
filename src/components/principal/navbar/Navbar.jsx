@@ -3,6 +3,7 @@ import React from "react";
 import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import ModalRealizarPedido from "./modal-realizar-pedido/ModalRealizarPedido";
 import Contacto from "./modal-realizar-pedido/Contacto";
+import { datosDonaCeci } from "@/data/donaceci";
 
 const Navbar = () => {
   return (
@@ -10,19 +11,13 @@ const Navbar = () => {
       <nav className="w-11/12 md:w-8/12 flex items-center justify-between">
         {/* Social Icons */}
         <div className="flex gap-4">
-          <Link
-            href="https://www.facebook.com/donaceciempanadasartesanales/"
-            target="_blank"
-          >
+          <Link href={datosDonaCeci.redes_sociales.facebook} target="_blank">
             <FaFacebook className="w-5 h-5 text-white hover:text-[#eec802] cursor-pointer" />
           </Link>
-          <Link href="https://www.instagram.com/donacecie/" target="_blank">
+          <Link href={datosDonaCeci.redes_sociales.instagram} target="_blank">
             <FaInstagram className="w-5 h-5 text-white hover:text-[#eec802] cursor-pointer" />
           </Link>
-          <Link
-            href="https://www.tiktok.com/@dona.cecicongelados"
-            target="_blank"
-          >
+          <Link href={datosDonaCeci.redes_sociales.tiktok} target="_blank">
             <FaTiktok className="w-5 h-5 text-white hover:text-[#eec802] cursor-pointer" />
           </Link>
         </div>

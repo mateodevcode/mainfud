@@ -4,6 +4,7 @@ import { BiSolidPhoneCall } from "react-icons/bi";
 import { TbMailFilled } from "react-icons/tb";
 import Logo from "../logo/Logo";
 import { DonaCeciContext } from "@/context/DonaCeciContext";
+import { datosDonaCeci } from "@/data/donaceci";
 
 const Header = () => {
   const { isOpenMenuHamburguesa, setIsOpenMenuHamburguesa } =
@@ -36,7 +37,7 @@ const Header = () => {
           </div>
           <div>
             <span className="text-sm">Teléfono:</span>
-            <div className="font-medium">322 524 87 03</div>
+            <div className="font-medium">{datosDonaCeci.telefono}</div>
           </div>
         </div>
 
@@ -82,12 +83,12 @@ const Header = () => {
         </div>
 
         <div
-          className="hidden md:flex items-center gap-2 text-white w-72 justify-end cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+          className="hidden md:flex items-center gap-2 text-white w-80 justify-end cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75"
           onClick={handleEmail}
         >
-          <div>
+          <div className="text-right">
             <span className="text-sm">Email:</span>
-            <div className="font-medium">info@donaceci.com</div>
+            <div className="font-medium">{datosDonaCeci.email}</div>
           </div>
           <div className="w-8 h-8 bg-[#eec802] rounded-full flex items-center justify-center">
             <TbMailFilled className="w-4 h-4 text-amber-800" />

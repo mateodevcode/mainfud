@@ -66,7 +66,7 @@ export default function Contacto() {
     <>
       <button
         onClick={() => setOpenModalContacto(true)}
-        className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+        className="hover:text-[#eec802] transition-colors active:scale-95 duration-75 select-none cursor-pointer"
       >
         Contacto
       </button>
