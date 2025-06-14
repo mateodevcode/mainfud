@@ -2,13 +2,11 @@
 
 import PaginaQR from "@/components/QRScanner/PaginaQR";
 import { DonaCeciContext } from "@/context/DonaCeciContext";
-import { formatoDinero } from "@/lib/formatoDinero";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useContext, useEffect, useRef, useState } from "react";
 import { HiArrowSmRight } from "react-icons/hi";
 import { gsap } from "gsap";
-import ModalIniciarSesion from "@/components/carta/ModalIniciarSesion";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
@@ -18,6 +16,10 @@ const ModalRealizarPedido = () => {
     setModalOpenRealizarPedido,
     handleConfetti,
     setModalOpenIniciarSesion,
+    paso1,
+    setPaso1,
+    paso2,
+    setPaso2,
   } = useContext(DonaCeciContext);
   const eleccionRef = useRef(null);
   const [tipoPedido, setTipoPedido] = useState("");
@@ -25,8 +27,8 @@ const ModalRealizarPedido = () => {
   const { status } = useSession();
   const [esperandoAutenticacion, setEsperandoAutenticacion] = useState(false);
 
-  const [paso1, setPaso1] = useState(false);
-  const [paso2, setPaso2] = useState(false);
+  // const [paso1, setPaso1] = useState(false);
+  // const [paso2, setPaso2] = useState(false);
 
   useEffect(() => {
     if (paso2 && tipoPedido === "para_comer_aqui" && eleccionRef.current) {
@@ -59,7 +61,7 @@ const ModalRealizarPedido = () => {
 
   return (
     <>
-      <button
+      {/* <button
         className="bg-[#eec802] hover:bg-[#eec802]/50 text-amber-900 font-medium px-4 py-2 text-sm cursor-pointer select-none active:scale-95 transition-colors duration-300 animate-pulse"
         onClick={() => {
           setModalOpenRealizarPedido(true);
@@ -68,7 +70,7 @@ const ModalRealizarPedido = () => {
         }}
       >
         Realizar Pedido
-      </button>
+      </button> */}
 
       <AnimatePresence>
         {modalOpenRealizarPedido && (
@@ -77,7 +79,7 @@ const ModalRealizarPedido = () => {
             onClick={() => setModalOpenRealizarPedido(false)}
           >
             <motion.div
-              className="relative z-10 w-11/12 md:w-4/12 flex flex-col items-start bg-black/50 shadow-lg p-4 rounded-md"
+              className="relative z-10 w-11/12 md:w-8/12 lg:w-6/12 xl:w-5/12 flex flex-col items-start bg-black/50 shadow-lg p-4 rounded-md"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
@@ -154,27 +156,6 @@ const ModalRealizarPedido = () => {
                         ? "opacity-50 cursor-not-allowed"
                         : "opacity-100 cursor-pointer hover:bg-[#eec802]/50 transition-colors duration-200  active:scale-95"
                     }`}
-                    // onClick={(e) => {
-                    //   e.stopPropagation();
-                    //   setPaso1(false);
-                    //   setPaso2(true);
-                    //   if (tipoPedido === "para_comer_aqui") {
-                    //     handleConfetti();
-                    //     setTimeout(() => {
-                    //       handleConfetti();
-                    //     }, 1000);
-                    //   }
-
-                    //   if (tipoPedido === "para_llevar") {
-                    //     if (status === "authenticated") {
-                    //       router.push("/carta");
-                    //       setModalOpenRealizarPedido(false);
-                    //     } else {
-                    //       setModalOpenIniciarSesion(true);
-                    //       setModalOpenRealizarPedido(false);
-                    //     }
-                    //   }
-                    // }}
                     onClick={(e) => {
                       e.stopPropagation();
                       setPaso1(false);

@@ -166,7 +166,7 @@ export function FormIniciarSesion({ className, ...props }) {
       <div className="text-center text-sm my-5">
         ¿No tienes una cuenta?{" "}
         <Link
-          href="/registrarse"
+          href="#"
           className="font-semibold hover:text-[#eec802] hover:underline"
         >
           Regístrate

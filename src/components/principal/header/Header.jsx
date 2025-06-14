@@ -1,15 +1,12 @@
 "use client";
-import React, { useContext } from "react";
+
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { TbMailFilled } from "react-icons/tb";
 import Logo from "../logo/Logo";
-import { DonaCeciContext } from "@/context/DonaCeciContext";
 import { datosDonaCeci } from "@/data/donaceci";
+import BotonMenuHamburguesa from "./BotonMenuHamburguesa";
 
 const Header = () => {
-  const { isOpenMenuHamburguesa, setIsOpenMenuHamburguesa } =
-    useContext(DonaCeciContext);
-
   const phoneNumber = "+573002888529";
   const email = "seventwotech@gmail.com";
   const subject = "Información sobre Dona Ceci";
@@ -27,9 +24,9 @@ const Header = () => {
 
   return (
     <section className="w-full flex flex-col items-center justify-center">
-      <div className="flex justify-between items-center pt-6 w-11/12 md:w-8/12 font-roboto">
+      <div className="flex justify-between items-center pt-6 w-11/12 md:w-10/12 lg:w-8/12 font-roboto">
         <div
-          className="hidden md:flex items-center gap-2 text-white w-72 justify-start cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+          className="hidden md:flex items-center gap-2 text-white w-80 justify-start cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75"
           onClick={handleCall}
         >
           <div className="w-8 h-8 bg-[#eec802] rounded-full flex items-center justify-center">
@@ -41,44 +38,9 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-white justify-between md:justify-center md:w-60 w-full">
+        <div className="items-center gap-2 text-white justify-between md:justify-center md:w-60 w-full flex md:hidden lg:flex">
           {/* <MenuHamburguesa /> */}
-          <button
-            className="hamburger-button flex md:hidden"
-            onClick={() => setIsOpenMenuHamburguesa(!isOpenMenuHamburguesa)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              width="40"
-              height="24"
-              viewBox="0 0 40 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className=""
-            >
-              {/* Línea superior */}
-              <rect
-                className={`line top ${isOpenMenuHamburguesa ? "active" : ""}`}
-                x="4"
-                y="6"
-                width="30"
-                height="2"
-                rx="1"
-              />
-
-              {/* Línea inferior */}
-              <rect
-                className={`line bottom ${
-                  isOpenMenuHamburguesa ? "active" : ""
-                }`}
-                x="4"
-                y="16"
-                width="30"
-                height="2"
-                rx="1"
-              />
-            </svg>
-          </button>
+          <BotonMenuHamburguesa />
           <Logo />
         </div>
 

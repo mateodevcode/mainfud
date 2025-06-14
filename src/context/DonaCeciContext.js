@@ -36,6 +36,8 @@ export const DonaCeciProvider = ({ children }) => {
 
   // Modal de realizar pedido de inicio
   const [modalOpenRealizarPedido, setModalOpenRealizarPedido] = useState(false);
+  const [paso1, setPaso1] = useState(false);
+  const [paso2, setPaso2] = useState(false);
 
   // Modal menu hamburguesa
   const [isOpenMenuHamburguesa, setIsOpenMenuHamburguesa] = useState(false);
@@ -301,6 +303,10 @@ export const DonaCeciProvider = ({ children }) => {
         handleConfetti,
         mesa,
         setMesa,
+        paso1,
+        setPaso1,
+        paso2,
+        setPaso2,
       }}
     >
       {children}

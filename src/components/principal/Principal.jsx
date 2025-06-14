@@ -13,6 +13,9 @@ import {
 import MenuHamburguesa from "./header/MenuHamburguesa";
 import { DonaCeciContext } from "@/context/DonaCeciContext";
 import ModalIniciarSesion from "../carta/ModalIniciarSesion";
+import Logo from "./logo/Logo";
+import Contacto from "./navbar/modal-realizar-pedido/Contacto";
+import ModalRealizarPedido from "./navbar/modal-realizar-pedido/ModalRealizarPedido";
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -125,10 +128,10 @@ const Principal = () => {
 
   return (
     <>
-      <div className="w-full relative h-screen">
+      <div className="w-full relative h-full">
         {/* Fondo dinámico */}
         {/* Transición de fondos con desvanecimiento */}
-        <div className="absolute inset-0 -z-10 w-full h-screen">
+        <div className="absolute inset-0 -z-10 w-full">
           {/* {backgrounds.map((src, i) => (
           <Image
             key={i}
@@ -147,35 +150,43 @@ const Principal = () => {
             alt={`Fondo`}
             width={1920}
             height={1080}
-            className="w-full h-screen object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100 z-0"
+            className="w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100 z-0"
             priority
           />
         </div>
 
         <div className="absolute inset-0 bg-black/50 -z-10 w-full h-screen"></div>
-
+        <div className="w-full md:flex lg:hidden hidden items-center justify-center mt-10">
+          <Logo />
+        </div>
         <Header />
         <div className="h-[1px] bg-zinc-300/50 my-5" />
         <Navbar />
+        <div className="hidden md:flex lg:hidden items-center gap-8 text-white font-roboto w-full justify-center mt-16">
+          <a
+            href="/"
+            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+          >
+            Inicio
+          </a>
+          <a
+            href="#el-restaurante"
+            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+          >
+            El Restaurante
+          </a>
+          <a
+            href="/carta"
+            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+          >
+            Carta
+          </a>
+          <Contacto />
+        </div>
         <DescubreLaCarta />
 
-        {/* Empanadas */}
-        <div className="hidden absolute left-0 transform -translate-x-1/2 -translate-y-250 pointer-events-none md:grid place-items-center">
-          <div className="relative overflow-hidden w-400 h-svh">
-            {empanadasList.map((cls, i) => (
-              <img
-                key={i}
-                ref={(el) => (empanadas.current[i] = el)}
-                src={cls}
-                className={`absolute w-64  ${cls}`}
-                style={{ top: 0, left: 0 }}
-              />
-            ))}
-          </div>
-        </div>
-
         {/* Botones */}
-        <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 hidden md:flex gap-4 z-10 pointer-events-auto">
+        <div className="flex gap-4 z-10 pointer-events-auto w-full justify-center absolute bottom-16">
           <button
             onClick={() => handleManualNavigation(-1)}
             className="p-2 bg-[#eec802] text-amber-900 rounded-lg shadow transition cursor-pointer active:scale-95 opacity-30 hover:opacity-100"
@@ -188,6 +199,21 @@ const Principal = () => {
           >
             <MdOutlineKeyboardArrowRight className="text-2xl" />
           </button>
+        </div>
+
+        {/* Empanadas */}
+        <div className="absolute left-0 transform -translate-x-1/2 -translate-y-270 pointer-events-none md:grid place-items-center">
+          <div className="relative overflow-hidden 2xl:w-[1500px] xl:w-[1200px] md:w-[1000px] w-[650px] lg:w-[1200px] 2xl:h-[1000px] xl:h-[1000px] lg:h-[1000px] md:h-[1000px] h-[1000px]">
+            {empanadasList.map((cls, i) => (
+              <img
+                key={i}
+                ref={(el) => (empanadas.current[i] = el)}
+                src={cls}
+                className={`absolute w-40 md:w-56 lg:w-72 -ml-[650px] md:-ml-[500px] lg:-ml-72 2xl:ml-0 mt-40 md:mt-20 lg:mt-0 ${cls}`}
+                style={{ top: 0, left: 0 }}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Divisor inferior */}
@@ -203,6 +229,7 @@ const Principal = () => {
         <MenuHamburguesa />
       </div>
 
+      <ModalRealizarPedido />
       <ModalIniciarSesion />
     </>
   );

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { DonaCeciContext } from "@/context/DonaCeciContext";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { TbMailFilled } from "react-icons/tb";
+import { datosDonaCeci } from "@/data/donaceci";
 
 const MenuHamburguesa = () => {
   const { isOpenMenuHamburguesa, setIsOpenMenuHamburguesa } =
@@ -63,7 +64,7 @@ const MenuHamburguesa = () => {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-sm">Teléfono:</span>
-                <div className="font-medium">322 524 87 03</div>
+                <div className="font-medium">{datosDonaCeci.telefono}</div>
               </div>
             </div>
             <div className="flex flex-col items-start gap-2 w-full">
@@ -86,8 +87,7 @@ const MenuHamburguesa = () => {
                 <TbMailFilled className="w-4 h-4 text-amber-800" />
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-sm">Email:</span>
-                <div className="font-medium">info@donaceci.com</div>
+                <div className="font-medium">{datosDonaCeci.email}</div>
               </div>
             </div>
           </motion.div>

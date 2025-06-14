@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { use, useContext } from "react";
 import { IoCart } from "react-icons/io5";
 import { TiArrowSortedDown } from "react-icons/ti";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import { AnimateNumber } from "./animateNumber/AnimateNumber";
 import PaginaQR from "../QRScanner/PaginaQR";
 import { signOut, useSession } from "next-auth/react";
 import { MdLogout } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const {
@@ -21,11 +22,9 @@ const Header = () => {
     totalUnidades,
     setModalOpenIniciarSesion,
     modalOpenIniciarSesion,
-    mesa,
   } = useContext(DonaCeciContext);
   const { data: session, status } = useSession();
-
-  console.log(mesa);
+  const router = useRouter();
 
   return (
     <div className="w-full h-12 bg-black flex items-center justify-between relative z-20">
@@ -73,7 +72,11 @@ const Header = () => {
                 height={40}
                 className="rounded-full w-7 h-7"
               />
-              <div onClick={() => signOut()}>
+              <div
+                onClick={() => {
+                  signOut({ callbackUrl: "/" });
+                }}
+              >
                 <MdLogout className="text-xl" />
               </div>
             </li>
