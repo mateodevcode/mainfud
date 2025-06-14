@@ -7,7 +7,7 @@ import React from "react";
 const TiposDeEmpanadas = () => {
   const router = useRouter();
   return (
-    <div className="w-full flex flex-col items-center justify-center bg-white relative">
+    <div className="w-full flex flex-col items-center justify-center bg-white relative z-10">
       <div className="flex flex-col justify-center items-center py-5 md:py-20 w-10/12 md:w-8/12">
         <h2 className="text-4xl md:text-6xl font-bold text-center text-[#965511]">
           Tipos de Empanadas
@@ -33,16 +33,6 @@ const TiposDeEmpanadas = () => {
         >
           Ver Carta
         </button>
-      </div>
-
-      <div className="absolute -bottom-3 md:-bottom-12 flex items-center justify-center w-full z-20 rotate-180">
-        <Image
-          src={"/divisor/divisor.png"}
-          alt={"divisor"}
-          width={1920}
-          height={1080}
-          className="w-full h-auto object-cover"
-        />
       </div>
     </div>
   );

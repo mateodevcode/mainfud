@@ -9,8 +9,11 @@ import { TbMailFilled } from "react-icons/tb";
 import { datosDonaCeci } from "@/data/donaceci";
 
 const MenuHamburguesa = () => {
-  const { isOpenMenuHamburguesa, setIsOpenMenuHamburguesa } =
-    useContext(DonaCeciContext);
+  const {
+    isOpenMenuHamburguesa,
+    setIsOpenMenuHamburguesa,
+    setOpenModalContacto,
+  } = useContext(DonaCeciContext);
   const phoneNumber = "+573002888529";
   const email = "seventwotech@gmail.com";
   const subject = "Información sobre Dona Ceci";
@@ -26,8 +29,8 @@ const MenuHamburguesa = () => {
       link: "/carta",
     },
     {
-      nombre: "Contacto",
-      link: "/contacto",
+      nombre: "El Restaurante",
+      link: "/nosotros",
     },
   ];
 
@@ -67,17 +70,26 @@ const MenuHamburguesa = () => {
                 <div className="font-medium">{datosDonaCeci.telefono}</div>
               </div>
             </div>
-            <div className="flex flex-col items-start gap-2 w-full">
+            <div className="flex flex-col items-start gap-2 w-full px-4">
               {enlaces.map((enlace, index) => (
                 <Link
                   key={index}
                   href={enlace.link}
-                  className="w-full text-left px-4 py-2 hover:text-[#eec802] transition-colors active:scale-95 duration-75"
+                  className="w-full text-left py-2 hover:text-[#eec802] transition-colors active:scale-95 duration-75"
                   onClick={() => setIsOpenMenuHamburguesa(false)}
                 >
                   {enlace.nombre}
                 </Link>
               ))}
+              <button
+                onClick={() => {
+                  setOpenModalContacto(true);
+                  setIsOpenMenuHamburguesa(false);
+                }}
+                className="hover:text-[#eec802] transition-colors active:scale-95 duration-75 select-none cursor-pointer"
+              >
+                Contacto
+              </button>
             </div>
             <div
               className="flex items-center gap-2 text-white justify-start"

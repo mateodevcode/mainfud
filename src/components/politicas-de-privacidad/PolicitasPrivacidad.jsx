@@ -1,7 +1,9 @@
 "use client";
 import { datosDonaCeci } from "@/data/donaceci";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { IoArrowUndoOutline } from "react-icons/io5";
 
 export default function PrivacyPolicy() {
   const [activeSection, setActiveSection] = useState("");
@@ -65,24 +67,32 @@ export default function PrivacyPolicy() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white md:pb-60 pb-10 pt-20">
+    <div className="min-h-screen bg-white text-black md:pb-60 pb-10 pt-20 relative">
+      <div
+        className="absolute top-10 left-10 lg:left-20 w-10 h-10 lg:w-20 lg:h-20 bg-[#eec802] flex items-center justify-center rounded-md cursor-pointer hover:bg-[#d4b600] transition-colors duration-200 z-50 active:scale-95"
+        onClick={() => {
+          router.push("/");
+        }}
+      >
+        <IoArrowUndoOutline className="text-2xl lg:text-4xl" />
+      </div>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* Header */}
         <div className="col-span-full border-b border-white py-12">
-          <h1 className="text-4xl font-bold text-center text-white">
-            Política de Privacidad
+          <h1 className="text-4xl font-bold text-center ">
+            Política de Privacidad de Doña Ceci
           </h1>
         </div>
 
         {/* Last updated */}
         <div className="col-span-full border-b border-white py-6">
-          <p className="text-center text-white">
+          <p className="text-center ">
             Última actualización: 13 de junio, 2025
           </p>
         </div>
 
         {/* Main content */}
-        <div className="col-span-3 py-8 px-4 text-white">
+        <div className="col-span-3 py-8 px-4 ">
           <div className="prose max-w-none">
             <div id="intro">
               <p className="">
@@ -96,7 +106,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div id="section-1">
-              <h2 className="text-2xl font-semibold mt-8 mb-4 text-white">
+              <h2 className="text-2xl font-semibold mt-8 mb-4 ">
                 1. ¿Qué información recopilamos?
               </h2>
               <p className="">
@@ -116,7 +126,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div id="section-2">
-              <h2 className="text-2xl font-semibold mt-8 mb-4 text-white">
+              <h2 className="text-2xl font-semibold mt-8 mb-4 ">
                 2. ¿Cómo usamos tu información?
               </h2>
               <p className="">Usamos tu información para:</p>
@@ -140,7 +150,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div id="section-3">
-              <h2 className="text-2xl font-semibold mt-8 mb-4 text-white">
+              <h2 className="text-2xl font-semibold mt-8 mb-4 ">
                 3. Uso de Cookies
               </h2>
               <p className="">
@@ -159,7 +169,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div id="section-4">
-              <h2 className="text-2xl font-semibold mt-8 mb-4 text-white">
+              <h2 className="text-2xl font-semibold mt-8 mb-4 ">
                 4. Enlaces a otros sitios
               </h2>
               <p className="">
@@ -173,7 +183,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div id="section-5">
-              <h2 className="text-2xl font-semibold mt-8 mb-4 text-white">
+              <h2 className="text-2xl font-semibold mt-8 mb-4 ">
                 5. Tu información, tu control
               </h2>
               <p className="">Tienes total libertad para:</p>
@@ -195,7 +205,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div id="section-6">
-              <h2 className="text-2xl font-semibold mt-8 mb-4 text-white">
+              <h2 className="text-2xl font-semibold mt-8 mb-4 ">
                 6. Seguridad y almacenamiento
               </h2>
               <p className="">
@@ -207,7 +217,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div id="section-7">
-              <h2 className="text-2xl font-semibold mt-8 mb-4 text-white">
+              <h2 className="text-2xl font-semibold mt-8 mb-4 ">
                 7. Tus derechos
               </h2>
               <p className="">Como usuario, tienes derecho a:</p>
@@ -227,7 +237,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div id="section-8">
-              <h2 className="text-2xl font-semibold mt-8 mb-4 text-white">
+              <h2 className="text-2xl font-semibold mt-8 mb-4 ">
                 8. Cambios a esta política
               </h2>
               <p className="">
@@ -238,7 +248,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div id="section-9">
-              <h2 className="text-2xl font-semibold mt-8 mb-4 text-white">
+              <h2 className="text-2xl font-semibold mt-8 mb-4 ">
                 9. Aceptación
               </h2>
               <p className="">
@@ -251,7 +261,7 @@ export default function PrivacyPolicy() {
         </div>
 
         {/* Sidebar navigation */}
-        <div className="md:col-span-1 py-8 px-4 text-white">
+        <div className="md:col-span-1 py-8 px-4">
           <div className="sticky top-24">
             <h3 className="text-lg font-semibold mb-4">En esta página</h3>
             <nav className="space-y-2">
@@ -260,8 +270,8 @@ export default function PrivacyPolicy() {
                   key={section.id}
                   className={`${
                     activeSection === section.id
-                      ? "text-white font-medium border-l-2 border-white pl-3 -ml-[1px]"
-                      : "text-white hover:text-zinc-500 pl-3"
+                      ? "text-black font-medium border-l-2 border-black pl-3 -ml-[1px]"
+                      : "text-black hover:font-semibold pl-3"
                   } transition-colors duration-200`}
                 >
                   <button
@@ -278,6 +288,15 @@ export default function PrivacyPolicy() {
             </nav>
           </div>
         </div>
+      </div>
+      <div className="absolute -bottom-3 md:-bottom-5 lg:-bottom-8 xl:-bottom-10 rotate-180 flex items-center justify-center w-full z-20">
+        <Image
+          src={"/divisor/divisor.png"}
+          alt={"divisor"}
+          width={1920}
+          height={1080}
+          className="w-full h-auto object-cover"
+        />
       </div>
     </div>
   );

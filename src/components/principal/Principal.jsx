@@ -30,7 +30,7 @@ const backgrounds = [
 ];
 
 const Principal = () => {
-  const { setModalOpenIniciarSesion } = useContext(DonaCeciContext);
+  const { setOpenModalContacto } = useContext(DonaCeciContext);
 
   const [backgroundIndex, setBackgroundIndex] = useState(0);
   const empanadas = useRef([]);
@@ -181,7 +181,14 @@ const Principal = () => {
           >
             Carta
           </a>
-          <Contacto />
+          <button
+            onClick={() => {
+              setOpenModalContacto(true);
+            }}
+            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75 select-none cursor-pointer"
+          >
+            Contacto
+          </button>
         </div>
         <DescubreLaCarta />
 
@@ -231,6 +238,8 @@ const Principal = () => {
 
       <ModalRealizarPedido />
       <ModalIniciarSesion />
+
+      <Contacto />
     </>
   );
 };

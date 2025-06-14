@@ -33,7 +33,7 @@ const Restaurante = () => {
   return (
     <div className="bg-white w-full flex flex-col items-center justify-center relative">
       <div
-        className="flex flex-col md:flex-row justify-between items-start pt-6 w-10/12 md:w-8/12 mt-20 gap-10 mb-20 md:mb-40"
+        className="flex flex-col lg:flex-row justify-between items-start pt-6 w-10/12 md:w-8/12 mt-20 gap-10 mb-20"
         id="el-restaurante"
       >
         <Section1 />
@@ -45,7 +45,7 @@ const Restaurante = () => {
           onClick={() => setAbrirVideo(false)}
         >
           <div
-            className="w-full md:w-5/12 h-full"
+            className="w-full md:w-10/12 lg:w-5/12 h-full"
             onClick={(e) => e.stopPropagation()}
           >
             <video
@@ -57,22 +57,13 @@ const Restaurante = () => {
           </div>
 
           <button
-            className="flex md:hidden absolute top-4 right-4 text-white text-xl bg-red-600 rounded-full px-2 hover:bg-red-700 transition-colors duration-300"
+            className="flex lg:hidden absolute top-4 right-4 md:right-20 text-white text-xl bg-red-600 rounded-full px-2 hover:bg-red-700 transition-colors duration-300"
             onClick={() => setAbrirVideo(false)}
           >
             &times;
           </button>
         </div>
       )}
-      <div className="absolute -bottom-12 flex items-center justify-center w-full rotate-180 z-10">
-        <Image
-          src={"/divisor/divisor.png"}
-          alt={"divisor"}
-          width={1920}
-          height={1080}
-          className="w-full h-auto object-cover"
-        />
-      </div>
     </div>
   );
 };

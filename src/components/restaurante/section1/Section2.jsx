@@ -1,8 +1,13 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FaPlay } from "react-icons/fa";
 
 const Section2 = ({ setAbrirVideo }) => {
+  const router = useRouter();
+
   const tipos_empanadas = [
     "Empanada Hawaiana",
     "Empanada Butichorizo",
@@ -10,7 +15,7 @@ const Section2 = ({ setAbrirVideo }) => {
   ];
 
   return (
-    <div className="w-full md:w-5/12 h-[800px] md:h-[900px] flex flex-col">
+    <div className="w-full lg:w-5/12 h-[800px] md:h-[900px] flex flex-col mb-20">
       <span className="text-4xl font-roboto">
         Más de 20 tipos de empanadas{" "}
         <span className="text-[#965511]">artesanales.</span>
@@ -37,7 +42,10 @@ const Section2 = ({ setAbrirVideo }) => {
           </li>
         ))}
       </ul>
-      <button className="bg-[#eec802] hover:bg-[#eec802]/50 text-amber-900 font-medium px-4 py-2 my-4 cursor-pointer select-none w-32 active:scale-95 transition-colors duration-300">
+      <button
+        className="bg-[#eec802] hover:bg-[#eec802]/50 text-amber-900 font-medium px-4 py-2 my-4 cursor-pointer select-none w-32 active:scale-95 transition-colors duration-300"
+        onClick={() => router.push("/nosotros")}
+      >
         Saber Más
       </button>
       <div

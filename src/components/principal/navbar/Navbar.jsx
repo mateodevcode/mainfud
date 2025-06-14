@@ -3,13 +3,16 @@
 import Link from "next/link";
 import React, { useContext } from "react";
 import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
-import Contacto from "./modal-realizar-pedido/Contacto";
 import { datosDonaCeci } from "@/data/donaceci";
 import { DonaCeciContext } from "@/context/DonaCeciContext";
 
 const Navbar = () => {
-  const { setModalOpenRealizarPedido, setPaso1, setPaso2 } =
-    useContext(DonaCeciContext);
+  const {
+    setModalOpenRealizarPedido,
+    setPaso1,
+    setPaso2,
+    setOpenModalContacto,
+  } = useContext(DonaCeciContext);
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
@@ -35,7 +38,7 @@ const Navbar = () => {
             Inicio
           </a>
           <a
-            href="#el-restaurante"
+            href="/nosotros"
             className="hover:text-[#eec802] transition-colors active:scale-95 duration-75"
           >
             El Restaurante
@@ -46,7 +49,14 @@ const Navbar = () => {
           >
             Carta
           </a>
-          <Contacto />
+          <button
+            onClick={() => {
+              setOpenModalContacto(true);
+            }}
+            className="hover:text-[#eec802] transition-colors active:scale-95 duration-75 select-none cursor-pointer"
+          >
+            Contacto
+          </button>
         </div>
         {/* <ModalRealizarPedido /> */}
         <button

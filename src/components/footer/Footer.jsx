@@ -29,7 +29,7 @@ const Footer = () => {
   return (
     <div className="w-full">
       <footer className="w-full relative flex items-center justify-center">
-        <div className="relative z-10 pb-5 pt-20 w-8/12">
+        <div className="relative z-10 pb-5 pt-20 w-8/12 md:w-11/12 lg:w-8/12">
           {/* Logo */}
           <div className="flex justify-center mb-12">
             <div>
@@ -137,6 +137,16 @@ const Footer = () => {
         </div>
         <div className="absolute inset-0 bg-black/70 w-full"></div>
         {/* Legal Links */}
+
+        <div className="flex absolute -top-1 items-center justify-center w-full z-20 rotate-180">
+          <Image
+            src={"/divisor/divisor.png"}
+            alt={"divisor"}
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover"
+          />
+        </div>
       </footer>
       <AvisoFooter />
     </div>

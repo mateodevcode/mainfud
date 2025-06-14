@@ -45,6 +45,9 @@ export const DonaCeciProvider = ({ children }) => {
   // cargar la mesa desde localStorage
   const [mesa, setMesa] = useState(null);
 
+  // Modal de redes de contacto
+  const [openModalContacto, setOpenModalContacto] = useState(false);
+
   // Configuración de confetti
   const handleConfetti = () => {
     confetti({
@@ -307,6 +310,8 @@ export const DonaCeciProvider = ({ children }) => {
         setPaso1,
         paso2,
         setPaso2,
+        openModalContacto,
+        setOpenModalContacto,
       }}
     >
       {children}

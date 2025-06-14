@@ -17,7 +17,7 @@ const ModalIniciarSesion = () => {
           onClick={() => setModalOpenIniciarSesion(false)}
         >
           <motion.div
-            className="relative z-10 w-4/12 flex flex-col items-center justify-center bg-[#fff] shadow-lg rounded-md p-4 font-roboto"
+            className="relative z-10 w-11/12 md:w-7/12 lg:w-[450px] flex flex-col items-center justify-center bg-[#fff] shadow-lg rounded-md p-4 font-roboto"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
