@@ -7,7 +7,7 @@ const SideBar = ({}) => {
   const { carta, setItemSeleccionado } = useContext(DonaCeciContext);
 
   return (
-    <div className="w-72 h-[93%] flex flex-col items-center py-4 absolute left-0 top-14 overflow-y-scroll gap-2 px-4">
+    <div className="w-72 h-[93%] md:flex flex-col items-center py-4 absolute left-0 top-14 overflow-y-scroll gap-2 px-4 hidden">
       {carta.map((item, index) => (
         <span
           key={index}

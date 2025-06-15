@@ -2,12 +2,21 @@
 
 import { DonaCeciContext } from "@/context/DonaCeciContext";
 import { AnimatePresence, motion } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import IniciarSesion from "../iniciar-sesion/IniciarSesion";
+import { IoClose } from "react-icons/io5";
 
 const ModalIniciarSesion = () => {
   const { modalOpenIniciarSesion, setModalOpenIniciarSesion } =
     useContext(DonaCeciContext);
+
+  useEffect(() => {
+    if (modalOpenIniciarSesion) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [modalOpenIniciarSesion]);
 
   return (
     <AnimatePresence>
@@ -23,6 +32,12 @@ const ModalIniciarSesion = () => {
             transition={{ duration: 0.3 }}
             exit={{ opacity: 0, scale: 0 }}
           >
+            <div
+              className="absolute top-4 right-4 cursor-pointer rounded-full bg-black/20 hover:bg-black/30 transition-colors duration-200 p-2"
+              onClick={() => setModalOpenIniciarSesion(false)}
+            >
+              <IoClose className="text-2xl text-white" />
+            </div>
             <IniciarSesion />
           </motion.div>
         </div>

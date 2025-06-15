@@ -28,7 +28,7 @@ const Carta = () => {
 
   return (
     <>
-      {pathname.includes("carta") && !mesa && !getmesa && !orden && (
+      {/* {pathname.includes("carta") && !mesa && !getmesa && !orden && (
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-20">
           <div className="text-white flex flex-col items-center justify-center gap-4 my-10 bg-black/50 p-20 rounded-md">
             <PaginaQR size={"w-32 h-32"} />
@@ -38,9 +38,9 @@ const Carta = () => {
             <span className="text-2xl">Disfruta de nuestro menu.</span>
           </div>
         </div>
-      )}
+      )} */}
 
-      <div className="w-full h-screen flex flex-col items-center bg-[#eec802]">
+      <div className="w-full flex flex-col items-center bg-[#FDF9E5] h-screen">
         <Header />
         <div className="w-full flex flex-row items-start justify-between">
           <SideBar />
@@ -62,7 +62,7 @@ const Carta = () => {
 
       {/* Cargar loading */}
       {status === "loading" && (
-        <div className="absolute inset-0 z-50">
+        <div className="relative">
           <Loading />
         </div>
       )}

@@ -49,7 +49,7 @@ const ModalListaArticulos = () => {
           onClick={() => setModalOpenListaArticulos(false)}
         >
           <motion.div
-            className="absolute top-14 right-28 gap-1 z-10 w-96 flex flex-col items-center bg-black shadow-lg rounded-md overflow-y-auto max-h-[70vh]"
+            className="absolute top-14 md:right-28 gap-1 z-10 w-96 flex flex-col items-center bg-black shadow-lg rounded-md overflow-y-auto max-h-[70vh]"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}

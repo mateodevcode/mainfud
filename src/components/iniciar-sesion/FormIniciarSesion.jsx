@@ -75,18 +75,15 @@ export function FormIniciarSesion({ className, ...props }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={("flex flex-col gap-6 text-white", className)}
+      className={("flex flex-col gap-6 text-white relative", className)}
       {...props}
     >
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold my-5">Inicia sesión</h1>
-        <p className="text-balance text-sm text-zinc-400">
-          Ingresa tu email para acceder a tu cuenta
-        </p>
+        <h1 className="text-2xl font-bold my-2 md:my-5">Inicia sesión</h1>
       </div>
       <div className="grid gap-6">
         <div className="grid gap-2 mt-2">
-          <label htmlFor="email">Correo electrónico</label>
+          <label htmlFor="email text-sm">Correo electrónico</label>
           <div className="relative flex items-center justify-start gap-4 border-[1px] border-zinc-300 p-2">
             <Mail className="h-4 w-4 ml-2 text-muted-foreground" />
             <input
@@ -103,12 +100,6 @@ export function FormIniciarSesion({ className, ...props }) {
         <div className="grid gap-2">
           <div className="flex items-center">
             <label htmlFor="password">Contraseña</label>
-            <a
-              href="/olvidaste-tu-contrasena"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              ¿Olvidaste tu contraseña?
-            </a>
           </div>
           <div className="relative flex items-center justify-start gap-4 border-[1px] border-zinc-300 p-2">
             <Lock className="h-4 w-4 ml-2 text-muted-foreground" />
@@ -122,7 +113,7 @@ export function FormIniciarSesion({ className, ...props }) {
               required
               className="focus:outline-none focus:ring-0 focus:border-zinc-300"
             />
-            <div className="absolute right-3 top-2.5 h-4 w-4">
+            <div className="flex items-center justify-center">
               {verContraseña ? (
                 <IoEyeOutline
                   className="cursor-pointer"
@@ -136,10 +127,16 @@ export function FormIniciarSesion({ className, ...props }) {
               )}
             </div>
           </div>
+          <a
+            href="/olvidaste-tu-contrasena"
+            className="ml-auto text-xs underline-offset-4 hover:underline"
+          >
+            ¿Olvidaste tu contraseña?
+          </a>
         </div>
         <button
           type="submit"
-          className="w-full cursor-pointer select-none flex items-center justify-center gap-2 bg-[#eec802] p-2 my-2 rounded-full text-black hover:bg-[#eec802]/50 transition-colors duration-200 active:scale-95 border-[1px]"
+          className="w-full cursor-pointer select-none flex items-center justify-center gap-2 bg-[#eec802] p-2 my-2 rounded-full text-black hover:bg-[#eec802]/50 transition-colors duration-200 active:scale-95 border-[1px] text-sm"
         >
           Iniciar sesión
         </button>
@@ -150,12 +147,12 @@ export function FormIniciarSesion({ className, ...props }) {
         </div>
         <button
           variant="outline"
-          className="w-full cursor-pointer select-none flex items-center justify-center gap-2 bg-zinc-200 p-2 my-2 rounded-full text-black hover:bg-zinc-300 transition-colors duration-200 active:scale-95 border-[1px] border-zinc-300"
+          className="w-full cursor-pointer select-none flex items-center justify-center gap-4 bg-zinc-200 p-2 my-2 rounded-full text-black hover:bg-zinc-300 transition-colors duration-200 active:scale-95 border-[1px] border-zinc-300 text-sm"
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
             signIn("google", {
-              callbackUrl: "/",
+              callbackUrl: "/carta",
             });
           }}
         >

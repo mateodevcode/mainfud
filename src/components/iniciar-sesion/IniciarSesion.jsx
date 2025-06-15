@@ -1,16 +1,26 @@
-import Logo from "../principal/logo/Logo";
+"use client";
+
+import Image from "next/image";
 import { FormIniciarSesion } from "./FormIniciarSesion";
+import Link from "next/link";
 
 export default function IniciarSesion() {
   return (
     <div
-      className=""
       onClick={(e) => {
         e.stopPropagation();
       }}
     >
       <div className="flex justify-center gap-2">
-        <Logo />
+        <Link href="/">
+          <Image
+            src={"/logo/logo.png"}
+            alt="Logo"
+            width={400}
+            height={400}
+            className="h-24 lg:h-40 w-auto border-4 border-white rounded-full bg-white"
+          />
+        </Link>
       </div>
       <FormIniciarSesion />
     </div>

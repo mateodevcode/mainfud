@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useContext } from "react";
+import React, { useContext } from "react";
 import { IoCart } from "react-icons/io5";
 import { TiArrowSortedDown } from "react-icons/ti";
 import Image from "next/image";
@@ -10,7 +10,8 @@ import { AnimateNumber } from "./animateNumber/AnimateNumber";
 import PaginaQR from "../QRScanner/PaginaQR";
 import { signOut, useSession } from "next-auth/react";
 import { MdLogout } from "react-icons/md";
-import { useRouter } from "next/navigation";
+import MenuHamburguesaCarta from "./menuHamburguesaCarta/MenuHamburguesaCarta";
+import { BsFillPersonFill } from "react-icons/bs";
 
 const Header = () => {
   const {
@@ -24,19 +25,56 @@ const Header = () => {
     modalOpenIniciarSesion,
   } = useContext(DonaCeciContext);
   const { data: session, status } = useSession();
-  const router = useRouter();
 
   return (
-    <div className="w-full h-12 bg-black flex items-center justify-between relative z-20">
-      <div className="flex flex-row items-center justify-center gap-4 mx-10">
-        <h1 className="text-2xl font-bold text-[#eec802] font-roboto">
+    <div className="w-full h-12 bg-black flex items-center justify-between relative z-10">
+      <div className="flex flex-row items-center justify-center gap-4 mx-5 md:mx-10">
+        <h1 className="text-2xl text-[#eec802] font-divertida">
           <Link href="/">Doña Ceci</Link>
         </h1>
-        <span className="text-white text-sm">Empanadas Artesanales</span>
+        <span className="text-white text-sm hidden md:flex">
+          Empanadas Artesanales
+        </span>
+      </div>
+      <div className="flex items-center justify-between">
+        <PaginaQR size={"w-6 h-6 text-white mr-4 md:hidden flex"} />
+        <div
+          className="relative cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75 flex md:hidden items-center gap-1 select-none mr-4"
+          onClick={() => {
+            setModalOpenListaArticulos(!modalOpenListaArticulos);
+            setModalOpenIdioma(false);
+          }}
+        >
+          <IoCart className="text-xl text-white" />
+          <AnimateNumber value={totalUnidades} />
+        </div>
+        {status === "authenticated" ? (
+          <div className="flex items-center gap-2 active:scale-95 duration-75 cursor-pointer hover:text-[#eec802] transition-colors select-none mr-4">
+            <Image
+              src={session?.user?.image || "/logo/logo.png"}
+              alt={"Usuario"}
+              width={40}
+              height={40}
+              className="rounded-full w-6 h-6"
+            />
+          </div>
+        ) : (
+          <div
+            className="flex items-center active:scale-95 duration-75 cursor-pointer hover:text-[#eec802] transition-colors select-none mr-4 text-white md:hidden"
+            onClick={() => {
+              setModalOpenIniciarSesion(!modalOpenIniciarSesion);
+              setModalOpenListaArticulos(false);
+              setModalOpenIdioma(false);
+            }}
+          >
+            <BsFillPersonFill className="text-xl" />
+          </div>
+        )}
+        <MenuHamburguesaCarta />
       </div>
       <div className="fixed right-10">
-        <ul className="flex items-center gap-8 text-white font-roboto">
-          <li className="">
+        <ul className="hidden md:flex items-center gap-8 text-white font-roboto">
+          <li className="flex items-center active:scale-95 duration-75 cursor-pointer hover:text-[#eec802] transition-colors select-none">
             <PaginaQR />
           </li>
           <li

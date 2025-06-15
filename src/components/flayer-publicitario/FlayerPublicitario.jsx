@@ -41,7 +41,7 @@ const FlayerPublicitario = () => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="relative w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
         <Image
-          src="/flayer-publicitario/flayer.gif"
+          src="/flayer-publicitario/flayer.png"
           alt="Flayer Publicitario"
           width={500}
           height={500}

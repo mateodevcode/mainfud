@@ -6,7 +6,11 @@ import { LuQrCode } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import { DonaCeciContext } from "@/context/DonaCeciContext";
 
-export default function PaginaQR({ size = "w-6 h-6" }) {
+export default function PaginaQR({
+  size = "w-6 h-6",
+  text = false,
+  abrir = false,
+}) {
   const router = useRouter();
   const { setModalOpenRealizarPedido, mesa, setMesa } =
     useContext(DonaCeciContext);
@@ -38,20 +42,31 @@ export default function PaginaQR({ size = "w-6 h-6" }) {
     }
   }, [resultadoQR]);
 
+  useEffect(() => {
+    if (abrir) {
+      setModalAbierto(true);
+    } else {
+      setModalAbierto(false);
+    }
+  }, [abrir]);
+
   console.log(mesa);
 
   return (
     <div className="flex items-center justify-center">
       <button
-        className="cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75 select-none"
+        className="cursor-pointer hover:text-[#eec802] transition-colors active:scale-95 duration-75 select-none flex items-center gap-4"
         onClick={() => setModalAbierto(true)}
       >
         <LuQrCode className={size} />
+        {text && (
+          <span className="text-base font-semibold">Escanea tu mesa</span>
+        )}
       </button>
 
       {resultadoQR && (
         <div
-          className="fixed inset-0 z-50 bg-black/50 bg-opacity-60 flex justify-center items-center"
+          className="fixed inset-0 z-30 bg-black/50 bg-opacity-60 flex justify-center items-center text-white"
           onClick={() => {
             setModalAbierto(false);
             setResultadoQR(null);
